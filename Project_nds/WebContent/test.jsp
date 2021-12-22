@@ -7,7 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% int a = 1; %>
+<% int a = 1; 
+	int b = 0;%>
 
 	<script type="text/javascript">
 	
