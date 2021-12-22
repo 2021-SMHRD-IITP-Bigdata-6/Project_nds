@@ -11,5 +11,6 @@ public class ex01 {
 		System.out.println("µ¿Çö¾Æ µÇ´Ï");
 		System.out.println("°æ¼·¾Æ Çª¾¾°¡ ¾ÈµÅ~~~~~~~~~~~~~~~~~~~");
 		System.out.println("°æ¼·¾Æ Çª¾¾°¡ ¾ÈµÅ~~~~~~~~~~~~~~~~~");
+		System.out.println("°æ¼·¾Æ Çª¾¾°¡ µÉ±î?~~~~~~~~~~~~~~~~~");
 	}
 }
