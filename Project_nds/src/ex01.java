@@ -7,6 +7,6 @@ public class ex01 {
 		System.out.println("허허허허");
 		System.out.println("진격의박선재");
 		System.out.println("ddddd");
-
+		System.out.println("경섭아 되니");
 	}
 }
