@@ -8,5 +8,6 @@ public class ex01 {
 		System.out.println("진격의박선재");
 		System.out.println("ddddd");
 		System.out.println("경섭아 되니");
+		System.out.println("동현아 되니");
 	}
 }
