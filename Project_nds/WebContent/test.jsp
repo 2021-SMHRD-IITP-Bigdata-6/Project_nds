@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+<% int a = 1; %>
+
 	<script type="text/javascript">
 	
 	
