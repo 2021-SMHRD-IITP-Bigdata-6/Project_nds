@@ -8,7 +8,7 @@
   <meta charset="UTF-8">
   <meta name="viewport"
     content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <title>무한스크롤</title>
+  <title>title</title>
   <style>
     
     #outer {
@@ -78,7 +78,7 @@
       <section class="inner">
 
         <h1 class="logo">
-          <a href="index.html">
+          <a href="index.jsp">
             <div class="sprite_insta_icon"></div>
             <div class="sprite_write_logo"></div>
           </a>
