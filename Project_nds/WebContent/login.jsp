@@ -1,3 +1,6 @@
+<%@page import="com.memberDTO.memberDTO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +26,6 @@
     <meta itemprop="description" content="instagram clone">
     <meta itemprop="image" content="http://kindtiger.dothome.co.kr/insta/imgs/instagram.jpeg">
 
-
     <title>instagram</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/common.css">
@@ -34,16 +36,13 @@
 </head>
 <body>
 
-
 <section id="container">
-
-
 
     <header id="header">
         <section class="h_inner">
 
             <h1 class="logo">
-                <a href="index.html">
+                <a href="index.jsp">
                     <div class="sprite_insta_icon"></div>
                     <div>
                         <div class="sprite_write_logo"></div>
@@ -60,12 +59,11 @@
                 </div>
             </div>
 
-
             <div class="right_icons">
-                <a href="new_post.html"><div class="sprite_camera_icon"></div></a>
-                <a href="login.html"><div class="sprite_compass_icon"></div></a>
-                <a href="follow.html"><div class="sprite_heart_icon_outline"></div></a>
-                <a href="profile.html"><div class="sprite_user_icon_outline"></div></a>
+                <a href="new_post.jsp"><div class="sprite_camera_icon"></div></a>
+                <a href="login.jsp"><div class="sprite_compass_icon"></div></a>
+                <a href="follow.jsp"><div class="sprite_heart_icon_outline"></div></a>
+                <a href="profile.jsp"><div class="sprite_user_icon_outline"></div></a>
             </div>
         </section>
     </header>
@@ -81,35 +79,30 @@
 
                 <h1 class="sprite_insta_big_logo title"></h1>
 
-                <form action="#">
-                    <p class="login_user_name">
-                        <label for="user_name">사용자명:</label>
-                        <input type="text" id="user_name">
+                <form action="LoginCon" method="post">
+                    <p class="login_user_email">
+                        <label for="user_email">사용자명:</label>
+                        <input type="text" name="email">
                     </p>
 
                     <p class="login_user_password">
                         <label for="user_password">비밀번호:</label>
-                        <input type="text" id="user_password">
+                        <input type="password" name="pw">
                     </p>
 
                     <input type="submit" id="submit_btn" value="로그인" class="submit_btn">
                 </form>
 
-
-
             </div>
 
             <div class="bottom_box">
                 <div>
-                    <span>아이디가 없으신가요?</span><a href="#">회원가입</a>
+                    <span>아이디가 없으신가요?</span><a href="joinpage.jsp">회원가입</a>
                 </div>
             </div>
 
-
         </div>
-
     </div>
-
 
 </section>
 
