@@ -68,7 +68,8 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/snowflake.css">
 </head>
-
+<%HttpSession se = request.getSession(); %>
+<% memberDTO dto = (memberDTO)se.getAttribute("dto");%>
 <body>
   <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
   <script src="js/main.js"></script>
@@ -94,16 +95,16 @@
         </div>
 
         <div class="right_icons">
-          <a href="new_post.html">
+          <a href="new_post.jsp">
             <div class="sprite_camera_icon"></div>
           </a>
-          <a href="login.html">
+          <a href="login.jsp">
             <div class="sprite_compass_icon"></div>
           </a>
-          <a href="follow.html">
+          <a href="follow.jsp">
             <div class="sprite_heart_icon_outline"></div>
           </a>
-          <a href="profile.html">
+          <a href="profile.jsp">
             <div class="sprite_user_icon_outline"></div>
           </a>
         </div>
@@ -121,7 +122,7 @@
                 <img src="imgs/thumb.jpeg" alt="프로필이미지">
               </div>
               <div class="user_name">
-                <div class="nick_name m_text">KindTiger</div>
+                <div class="nick_name m_text"><%=dto.getNickname()%></div>
               </div>
             </div>
           </header>
@@ -133,7 +134,7 @@
                   <img src="imgs/thumb.jpeg" alt="프로필이미지">
                 </div>
                 <div class="user_name">
-                  <div class="nick_name m_text" id="outer">KindTiger</div>
+                  <div class="nick_name m_text" id="outer"><%=dto.getNickname()%></div>
                 </div>
               </div>
               <div class="heart_btn" id="outer">
@@ -158,7 +159,7 @@
                   <img src="imgs/thumb.jpeg" alt="프로필이미지">
                 </div>
                 <div class="user_name">
-                  <div class="nick_name m_text" id="outer">KindTiger</div>
+                  <div class="nick_name m_text" id="outer"><%=dto.getNickname()%></div>
                 </div>
               </div>
               <div class="heart_btn" id="outer">
@@ -183,7 +184,7 @@
                   <img src="imgs/thumb.jpeg" alt="프로필이미지">
                 </div>
                 <div class="user_name">
-                  <div class="nick_name m_text" id="outer">KindTiger</div>
+                  <div class="nick_name m_text" id="outer"><%=dto.getNickname()%></div>
                 </div>
               </div>
               <div class="heart_btn" id="outer">
@@ -208,7 +209,7 @@
                   <img src="imgs/thumb.jpeg" alt="프로필이미지">
                 </div>
                 <div class="user_name">
-                  <div class="nick_name m_text" id="outer">KindTiger</div>
+                  <div class="nick_name m_text" id="outer"><%=dto.getNickname()%></div>
                 </div>
               </div>
               <div class="heart_btn" id="outer">
@@ -233,7 +234,7 @@
                   <img src="imgs/thumb.jpeg" alt="프로필이미지">
                 </div>
                 <div class="user_name">
-                  <div class="nick_name m_text" id="outer">KindTiger</div>
+                  <div class="nick_name m_text" id="outer"><%=dto.getNickname()%></div>
                 </div>
               </div>
               <div class="heart_btn" id="outer">
@@ -258,7 +259,7 @@
                   <img src="imgs/thumb.jpeg" alt="프로필이미지">
                 </div>
                 <div class="user_name">
-                  <div class="nick_name m_text" id="outer">KindTiger</div>
+                  <div class="nick_name m_text" id="outer"><%=dto.getNickname()%></div>
                 </div>
               </div>
               <div class="heart_btn" id="outer">
@@ -283,7 +284,7 @@
                   <img src="imgs/thumb.jpeg" alt="프로필이미지">
                 </div>
                 <div class="user_name">
-                  <div class="nick_name m_text" id="outer">KindTiger</div>
+                  <div class="nick_name m_text" id="outer"><%=dto.getNickname()%></div>
                 </div>
               </div>
               <div class="heart_btn" id="outer">
@@ -323,7 +324,7 @@
                   <img src="imgs/thumb.jpeg" alt="프로필이미지">
                 </div>
                 <div class="user_name">
-                  <div class="nick_name m_text" id="outer">KindTiger</div>
+                  <div class="nick_name m_text" id="outer"><%=dto.getNickname()%></div>
                 </div>
               </div>
               <div class="heart_btn" id="outer">
