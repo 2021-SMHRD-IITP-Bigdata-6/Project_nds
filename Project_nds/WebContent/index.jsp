@@ -2,444 +2,351 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>무한스크롤</title>
+  <style>
+    
+    #outer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/common.css">
-    <link rel="stylesheet" href="css/style.css">
+    #user_feed {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      margin-bottom: 10px;
 
-<%
-HttpSession se = request.getSession(); 
- memberDTO dto = (memberDTO)se.getAttribute("dto");
- 
- %>
+    }
 
+    textarea {
+      width: 96%;
+      height: 100px;
+      margin: 5px 0.5%;
+      padding: 3px 1%;
+      border: 1px solid pink;
+    }
 
-						
-						
+    .heart_btn {
+      margin-left: 250px;
+    }
+
+    .user_name {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .user_juno {
+      border: 1;
+    }
+
+    .comment-detail {}
+
+    .user_feedbox {
+      margin-top: 3px;
+      margin-bottom: 3px;
+      outline: 2px solid palegoldenrod;
+    }
+
+    article >div {
+      position: relative;
+      width: 500px;
+      height: auto;
+
+    }
+  </style>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/snowflake.css">
 </head>
+
 <body>
-<%if(dto == null){%> <a href="login.jsp">로그인</a> <%} %>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="js/main.js"></script>
 
-<section id="container">
-
-
+  <section id="container">
     <header id="header">
-        <section class="inner">
+      <section class="inner">
 
-            <h1 class="logo">
-                <a href="index.jsp">
-                    <div class="sprite_insta_icon"></div>
-                    <div class="sprite_write_logo"></div>
-                </a>
-            </h1>
+        <h1 class="logo">
+          <a href="index.html">
+            <div class="sprite_insta_icon"></div>
+            <div class="sprite_write_logo"></div>
+          </a>
+        </h1>
 
-            <div class="search_box">
-                <input type="text" placeholder="검색" id="search-field">
+        <div class="search_box">
+          <input type="text" placeholder="검색" id="search-field">
 
-                <div class="fake_field">
-                    <span class="sprite_small_search_icon"></span>
-                    <span>검색</span>
-                </div>
-            </div>
+          <div class="fake_field">
+            <span class="sprite_small_search_icon"></span>
+            <span>검색</span>
+          </div>
+        </div>
 
-            <div class="right_icons">
-                <a href="new_post.jsp"><div class="sprite_camera_icon"></div></a>
-                <a href="login.jsp"><div class="sprite_compass_icon"></div></a>
-                <a href="follow.jsp"><div class="sprite_heart_icon_outline"></div></a>
-                <a href="profile.jsp"><div class="sprite_user_icon_outline"> </div></a>
-                
-            </div>
+        <div class="right_icons">
+          <a href="new_post.html">
+            <div class="sprite_camera_icon"></div>
+          </a>
+          <a href="login.html">
+            <div class="sprite_compass_icon"></div>
+          </a>
+          <a href="follow.html">
+            <div class="sprite_heart_icon_outline"></div>
+          </a>
+          <a href="profile.html">
+            <div class="sprite_user_icon_outline"></div>
+          </a>
+        </div>
 
-        </section>
+      </section>
 
     </header>
-
-    <div class="hidden_menu">
-        <span class="sprite_small_search_icon"></span>
-                    <span>검색</span>
-    </div>
-
-
     <section id="main_container">
-        <div class="inner">
-
-            <div class="contents_box">
-                <article class="contents">
-                    <header class="top">
-                        <div class="user_container">
-                            <div class="profile_img">
-                                <img src="imgs/thumb.jpeg" alt="프로필이미지">
-                            </div>
-                            <div class="user_name">
-                                <div class="nick_name m_text"><%=dto.getNickname()%></div>
-                                <div class="country s_text">Seoul, South Korea</div>
-                            </div>
-
-                        </div>
-
-                        <div class="sprite_more_icon" data-name="more">
-                            <ul class="toggle_box">
-                               <li><input type="submit" class="follow" value="팔로우" data-name="follow"></li>
-                                <li>수정</li>
-                                <li>삭제</li>
-                            </ul>
-                        </div>
-                    </header>
-
-                    <div class="img_section">
-                        <div class="trans_inner">
-                            <div><img src="imgs/img_section/img01.jpg" alt="visual01"></div>
-                        </div>
-                    </div>
-
-                    <div class="bottom_icons">
-                        <div class="left_icons">
-                            <div class="heart_btn">
-                                <div class="sprite_heart_icon_outline" name="39" data-name="heartbeat"></div>
-                            </div>
-                            <div class="sprite_bubble_icon"></div>
-                            <div class="sprite_share_icon" data-name="share"></div>
-                        </div>
-                        <div class="right_icon">
-                            <div class="sprite_bookmark_outline" data-name="bookmark"></div>
-                        </div>
-                    </div>
-
-                    <div class="likes m_text">
-                        좋아요
-                        <span id="like-count-39">2,346</span>
-                        <span id="bookmark-count-39"></span>
-                        개
-                    </div>
-
-                    <div class="comment_container">
-                        <div class="comment" id="comment-list-ajax-post37">
-                            <div class="comment-detail">
-                                <div class="nick_name m_text">dongdong2</div>
-                                <div>강아지가 너무 귀여워요~!</div>
-                            </div>
-                        </div>
-                        <div class="small_heart">
-                            <div class="sprite_small_heart_icon_outline"></div>
-                        </div>
-                    </div>
-
-                    <div class="timer">1시간 전</div>
-
-                    <div class="comment_field" id="add-comment-post37">
-                        <input type="text" placeholder="댓글달기...">
-                        <div class="upload_btn m_text" data-name="comment">게시</div>
-                    </div>
-                </article>
-                <article class="contents">
-                    <header class="top">
-                        <div class="user_container">
-                            <div class="profile_img">
-                                <img src="imgs/thumb.jpeg" alt="프로필이미지">
-                            </div>
-                            <div class="user_name">
-                                <div class="nick_name m_text"><%=dto.getNickname()%></div>
-                                <div class="country s_text">Seoul, South Korea</div>
-                            </div>
-
-                        </div>
-
-                        <div class="sprite_more_icon" data-name="more">
-                            <ul class="toggle_box">
-                                <li><input type="submit" class="follow" value="팔로우" data-name="follow"></li>
-                                <li>수정</li>
-                                <li>삭제</li>
-                            </ul>
-                        </div>
-                    </header>
-
-                    <div class="img_section">
-                        <div class="trans_inner">
-                            <div><img src="imgs/img_section/img01.jpg" alt="visual01"></div>
-                        </div>
-                    </div>
-
-                    <div class="bottom_icons">
-                        <div class="left_icons">
-                            <div class="heart_btn">
-                                <div class="sprite_heart_icon_outline" name="39" data-name="heartbeat"></div>
-                            </div>
-                            <div class="sprite_bubble_icon"></div>
-                            <div class="sprite_share_icon" data-name="share"></div>
-                        </div>
-                        <div class="right_icon">
-                            <div class="sprite_bookmark_outline" data-name="bookmark"></div>
-                        </div>
-                    </div>
-
-                    <div class="likes m_text">
-                        좋아요
-                        <span id="like-count-39">2,347</span>
-                        개
-                    </div>
-
-                    <div class="comment_container">
-                        <div class="comment" id="comment-list-ajax-post37">
-                            <div class="comment-detail">
-                                <div class="nick_name m_text">dongdong2</div>
-                                <div>강아지가 너무 귀여워요~!</div>
-                            </div>
-                        </div>
-                        <div class="small_heart">
-                            <div class="sprite_small_heart_icon_outline"></div>
-                        </div>
-                    </div>
-
-                    <div class="timer">1시간 전</div>
-
-                    <div class="comment_field" id="add-comment-post37">
-                        <input type="text" placeholder="댓글달기...">
-                        <div class="upload_btn m_text" data-name="comment">게시</div>
-                    </div>
-                </article>
-                <article class="contents">
-                    <header class="top">
-                        <div class="user_container">
-                            <div class="profile_img">
-                                <img src="imgs/thumb.jpeg" alt="프로필이미지">
-                            </div>
-                            <div class="user_name">
-                                <div class="nick_name m_text"><%=dto.getNickname()%></div>
-                                <div class="country s_text">Seoul, South Korea</div>
-                            </div>
-
-                        </div>
-
-                        <div class="sprite_more_icon" data-name="more">
-                            <ul class="toggle_box">
-                                <li><input type="submit" class="follow" value="팔로우" data-name="follow"></li>
-                                <li>수정</li>
-                                <li>삭제</li>
-                            </ul>
-                        </div>
-                    </header>
-
-                    <div class="img_section">
-                        <div class="trans_inner">
-                            <div><img src="imgs/img_section/img01.jpg" alt="visual01"></div>
-                        </div>
-                    </div>
-
-                    <div class="bottom_icons">
-                        <div class="left_icons">
-                            <div class="heart_btn">
-                                <div class="sprite_heart_icon_outline" name="39" data-name="heartbeat"></div>
-                            </div>
-                            <div class="sprite_bubble_icon"></div>
-                            <div class="sprite_share_icon" data-name="share"></div>
-                        </div>
-                        <div class="right_icon">
-                            <div class="sprite_bookmark_outline" data-name="bookmark"></div>
-                        </div>
-                    </div>
-
-                    <div class="likes m_text">
-                        좋아요
-                        <span id="like-count-39">2,346</span>
-                        개
-                    </div>
-
-                    <div class="comment_container">
-                        <div class="comment" id="comment-list-ajax-post37">
-                            <div class="comment-detail">
-                                <div class="nick_name m_text">dongdong2</div>
-                                <div>강아지가 너무 귀여워요~!</div>
-                            </div>
-                        </div>
-                        <div class="small_heart">
-                            <div class="sprite_small_heart_icon_outline"></div>
-                        </div>
-                    </div>
-
-                    <div class="timer">1시간 전</div>
-
-                    <div class="comment_field" id="add-comment-post37">
-                        <input type="text" placeholder="댓글달기...">
-                        <div class="upload_btn m_text" data-name="comment">게시</div>
-                    </div>
-                </article>
-                <article class="contents">
-                    <header class="top">
-                        <div class="user_container">
-                            <div class="profile_img">
-                                <img src="imgs/thumb.jpeg" alt="프로필이미지">
-                            </div>
-                            <div class="user_name">
-                                <div class="nick_name m_text"><%=dto.getNickname()%></div>
-                                <div class="country s_text">Seoul, South Korea</div>
-                            </div>
-
-                        </div>
-
-                        <div class="sprite_more_icon" data-name="more">
-                            <ul class="toggle_box">
-                                <li><input type="submit" class="follow" value="팔로우" data-name="follow"></li>
-                                <li>수정</li>
-                                <li>삭제</li>
-                            </ul>
-                        </div>
-                    </header>
-
-                    <div class="img_section">
-                        <div class="trans_inner">
-                            <div><img src="imgs/img_section/img01.jpg" alt="visual01"></div>
-                        </div>
-                    </div>
-
-                    <div class="bottom_icons">
-                        <div class="left_icons">
-                            <div class="heart_btn">
-                                <div class="sprite_heart_icon_outline" name="39" data-name="heartbeat"></div>
-                            </div>
-                            <div class="sprite_bubble_icon"></div>
-                            <div class="sprite_share_icon" data-name="share"></div>
-                        </div>
-                        <div class="right_icon">
-                            <div class="sprite_bookmark_outline" data-name="bookmark"></div>
-                        </div>
-                    </div>
-
-                    <div class="likes m_text">
-                        좋아요
-                        <span id="like-count-39">2,346</span>
-                        개
-                    </div>
-
-                    <div class="comment_container">
-                        <div class="comment" id="comment-list-ajax-post37">
-                            <div class="comment-detail">
-                                <div class="nick_name m_text">dongdong2</div>
-                                <div>강아지가 너무 귀여워요~!</div>
-                            </div>
-                        </div>
-                        <div class="small_heart">
-                            <div class="sprite_small_heart_icon_outline"></div>
-                        </div>
-                    </div>
-
-                    <div class="timer">1시간 전</div>
-
-                    <div class="comment_field" id="add-comment-post37">
-                        <input type="text" placeholder="댓글달기...">
-                        <div class="upload_btn m_text" data-name="comment">게시</div>
-                    </div>
-                </article>
-
-
-
+      <div id = "inner">
+      <div class="contents_box">
+        <article class="contents">
+          <header class="top">
+            <div class="user_container">
+              <div class="profile_img">
+                <img src="imgs/thumb.jpeg" alt="프로필이미지">
+              </div>
+              <div class="user_name">
+                <div class="nick_name m_text">KindTiger</div>
+              </div>
             </div>
-            <input type="hidden" id="page" value="1">
-
-            <div class="side_box">
-                <div class="user_profile">
-                    <div class="profile_thumb">
-                        <img src="imgs/thumb.jpeg" alt="프로필사진">
-                    </div>
-                    <div class="detail">
-                        <div class="id m_text"><%=dto.getNickname()%></div>
-                        <div class="ko_name">심선범</div>
-                    </div>
+          </header>
+          <textarea placeholder="지금 무슨생각을 하고 계신가요?"> </textarea>
+          <div class="user_feedbox">
+            <div class="top">
+              <div class="user_container">
+                <div class="profile_img">
+                  <img src="imgs/thumb.jpeg" alt="프로필이미지">
                 </div>
-
-                <article class="story">
-                    <header class="story_header">
-                        <div>스토리</div>
-                        <div class="more">모두 보기</div>
-                    </header>
-
-                    <div class="scroll_inner">
-                        <div class="thumb_user">
-                            <div class="profile_thumb">
-                                <img src="imgs/thumb02.jpg" alt="프로필사진">
-                            </div>
-                            <div class="detail">
-                                <div class="id">kind_tigerrrr</div>
-                                <div class="time">1시간 전</div>
-                            </div>
-                        </div>
-                        <div class="thumb_user">
-                            <div class="profile_thumb">
-                                <img src="imgs/thumb02.jpg" alt="프로필사진">
-                            </div>
-                            <div class="detail">
-                                <div class="id">kind_tigerrrr</div>
-                                <div class="time">1시간 전</div>
-                            </div>
-                        </div>
-                        <div class="thumb_user">
-                            <div class="profile_thumb">
-                                <img src="imgs/thumb02.jpg" alt="프로필사진">
-                            </div>
-                            <div class="detail">
-                                <div class="id">kind_tigerrrr</div>
-                                <div class="time">1시간 전</div>
-                            </div>
-                        </div>
-                        <div class="thumb_user">
-                            <div class="profile_thumb">
-                                <img src="imgs/thumb02.jpg" alt="프로필사진">
-                            </div>
-                            <div class="detail">
-                                <div class="id">kind_tigerrrr</div>
-                                <div class="time">1시간 전</div>
-                            </div>
-                        </div>
-                        <div class="thumb_user">
-                            <div class="profile_thumb">
-                                <img src="imgs/thumb02.jpg" alt="프로필사진">
-                            </div>
-                            <div class="detail">
-                                <div class="id">kind_tigerrrr</div>
-                                <div class="time">1시간 전</div>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="recommend">
-                    <header class="reco_header">
-                        <div>회원님을 위한 추천</div>
-                        <div class="more">모두 보기</div>
-                    </header>
-
-                    <div class="thumb_user">
-                        <div class="profile_thumb">
-                            <img src="imgs/thumb02.jpg" alt="프로필사진">
-                        </div>
-                        <div class="detail">
-                            <div class="id">kind_tigerrrr</div>
-                            <div class="time">1시간 전</div>
-                        </div>
-                    </div>
-                    <div class="thumb_user">
-                        <div class="profile_thumb">
-                            <img src="imgs/thumb02.jpg" alt="프로필사진">
-                        </div>
-                        <div class="detail">
-                            <div class="id">kind_tigerrrr</div>
-                            <div class="time">1시간 전</div>
-                        </div>
-                    </div>
-                </article>
+                <div class="user_name">
+                  <div class="nick_name m_text" id="outer">KindTiger</div>
+                </div>
+              </div>
+              <div class="heart_btn" id="outer">
+                <div id="end_li" class="sprite_heart_icon_outline" name="39" data-name="heartbeat"></div>
+              </div>
+              <div><span id="like-count-39">2,346</span> </div>
             </div>
-
-
-        </div>
+            <div id="user_feed"> 강아지 귀엽다</div>
+            <div class="comment_container">
+              <div class="comment" id="comment-list-ajax-post37">
+                <div class="comment-detail">
+                  <div class="nick_name m_text">dongdong2</div>
+                  <div class="user_juno">강아지가 너무 귀여워요~!</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="user_feedbox">
+            <div class="top">
+              <div class="user_container">
+                <div class="profile_img">
+                  <img src="imgs/thumb.jpeg" alt="프로필이미지">
+                </div>
+                <div class="user_name">
+                  <div class="nick_name m_text" id="outer">KindTiger</div>
+                </div>
+              </div>
+              <div class="heart_btn" id="outer">
+                <div id="end_li" class="sprite_heart_icon_outline" name="39" data-name="heartbeat"></div>
+              </div>
+              <div><span id="like-count-39">2,346</span> </div>
+            </div>
+            <div id="user_feed"> 강아지 귀엽다</div>
+            <div class="comment_container">
+              <div class="comment" id="comment-list-ajax-post37">
+                <div class="comment-detail">
+                  <div class="nick_name m_text">dongdong2</div>
+                  <div class="user_juno">강아지가 너무 귀여워요~!</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="user_feedbox">
+            <div class="top">
+              <div class="user_container">
+                <div class="profile_img">
+                  <img src="imgs/thumb.jpeg" alt="프로필이미지">
+                </div>
+                <div class="user_name">
+                  <div class="nick_name m_text" id="outer">KindTiger</div>
+                </div>
+              </div>
+              <div class="heart_btn" id="outer">
+                <div id="end_li" class="sprite_heart_icon_outline" name="39" data-name="heartbeat"></div>
+              </div>
+              <div><span id="like-count-39">2,346</span> </div>
+            </div>
+            <div id="user_feed"> 강아지 귀엽다</div>
+            <div class="comment_container">
+              <div class="comment" id="comment-list-ajax-post37">
+                <div class="comment-detail">
+                  <div class="nick_name m_text">dongdong2</div>
+                  <div class="user_juno">강아지가 너무 귀여워요~!</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="user_feedbox">
+            <div class="top">
+              <div class="user_container">
+                <div class="profile_img">
+                  <img src="imgs/thumb.jpeg" alt="프로필이미지">
+                </div>
+                <div class="user_name">
+                  <div class="nick_name m_text" id="outer">KindTiger</div>
+                </div>
+              </div>
+              <div class="heart_btn" id="outer">
+                <div id="end_li" class="sprite_heart_icon_outline" name="39" data-name="heartbeat"></div>
+              </div>
+              <div><span id="like-count-39">2,346</span> </div>
+            </div>
+            <div id="user_feed"> 강아지 귀엽다</div>
+            <div class="comment_container">
+              <div class="comment" id="comment-list-ajax-post37">
+                <div class="comment-detail">
+                  <div class="nick_name m_text">dongdong2</div>
+                  <div class="user_juno">강아지가 너무 귀여워요~!</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="user_feedbox">
+            <div class="top">
+              <div class="user_container">
+                <div class="profile_img">
+                  <img src="imgs/thumb.jpeg" alt="프로필이미지">
+                </div>
+                <div class="user_name">
+                  <div class="nick_name m_text" id="outer">KindTiger</div>
+                </div>
+              </div>
+              <div class="heart_btn" id="outer">
+                <div id="end_li" class="sprite_heart_icon_outline" name="39" data-name="heartbeat"></div>
+              </div>
+              <div><span id="like-count-39">2,346</span> </div>
+            </div>
+            <div id="user_feed"> 강아지 귀엽다</div>
+            <div class="comment_container">
+              <div class="comment" id="comment-list-ajax-post37">
+                <div class="comment-detail">
+                  <div class="nick_name m_text">dongdong2</div>
+                  <div class="user_juno">강아지가 너무 귀여워요~!</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="user_feedbox">
+            <div class="top">
+              <div class="user_container">
+                <div class="profile_img">
+                  <img src="imgs/thumb.jpeg" alt="프로필이미지">
+                </div>
+                <div class="user_name">
+                  <div class="nick_name m_text" id="outer">KindTiger</div>
+                </div>
+              </div>
+              <div class="heart_btn" id="outer">
+                <div id="end_li" class="sprite_heart_icon_outline" name="39" data-name="heartbeat"></div>
+              </div>
+              <div><span id="like-count-39">2,346</span> </div>
+            </div>
+            <div id="user_feed"> 강아지 귀엽다</div>
+            <div class="comment_container">
+              <div class="comment" id="comment-list-ajax-post37">
+                <div class="comment-detail">
+                  <div class="nick_name m_text">dongdong2</div>
+                  <div class="user_juno">강아지가 너무 귀여워요~!</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="user_feedbox">
+            <div class="top">
+              <div class="user_container">
+                <div class="profile_img">
+                  <img src="imgs/thumb.jpeg" alt="프로필이미지">
+                </div>
+                <div class="user_name">
+                  <div class="nick_name m_text" id="outer">KindTiger</div>
+                </div>
+              </div>
+              <div class="heart_btn" id="outer">
+                <div id="end_li" class="sprite_heart_icon_outline" name="39" data-name="heartbeat"></div>
+              </div>
+              <div><span id="like-count-39">2,346</span> </div>
+            </div>
+            <div id="user_feed"> 강아지 귀엽다</div>
+            <div class="comment_container">
+              <div class="comment" id="comment-list-ajax-post37">
+                <div class="comment-detail">
+                  <div class="nick_name m_text">dongdong2</div>
+                  <div id="user_juno">강아지가 너무 귀여워요~!</div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      </article>
+      </div>
+    </div>
     </section>
-</section>
-
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script src="js/main.js"></script>
+  </section>
+  <h1></h1>
+  <script>
+    var comment = document.getElementById("user_juno").innerHTML;
+    var likeCount = document.getElementById('like-count-39').innerHTML;
+    window.onscroll = function (e) {
+      console.log(window.innerHeight, window.scrollY, document.body.offsetHeight)
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        setTimeout(function () {
+          var addComment = document.createElement("div");
+          addComment.classList.add("user_feedbox")
+          addComment.innerHTML = `<div class="top">
+              <div class="user_container">
+                <div class="profile_img">
+                  <img src="imgs/thumb.jpeg" alt="프로필이미지">
+                </div>
+                <div class="user_name">
+                  <div class="nick_name m_text" id="outer">KindTiger</div>
+                </div>
+              </div>
+              <div class="heart_btn" id="outer">
+                <div id="end_li" class="sprite_heart_icon_outline" name="39" data-name="heartbeat"></div>
+              </div>
+              <div><span id="like-count-39">2,346</span> </div>
+            </div>
+            <div id="user_feed"> 강아지 귀엽다</div>
+            <div class="comment_container">
+              <div class="comment" id="comment-list-ajax-post37">
+                <div class="comment-detail">
+                  <div class="nick_name m_text">dongdong2</div>
+                  <div id="user_juno">강아지가 너무 귀여워요~!</div>
+                </div>
+              </div>
+            </div>`
+          document.querySelector('article').appendChild(addComment);
+          console.log(document.querySelector('article'))
+        }, 300)
+      }
+      // db result set = null commnet = " 페이지의 끝입니다 "
+    }
+  </script>
 </body>
+
 </html>
