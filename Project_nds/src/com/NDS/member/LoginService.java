@@ -21,15 +21,15 @@ public class LoginService implements command{
 		memberDAO dao = new memberDAO();
 		
 		memberDTO dto = new memberDTO(id, pw);
+		
 		memberDTO dto1 = dao.login(dto);
 
-		String nextpage;
+		String nextpage = " ";
+		
 		if (dto1 != null) {
-			dto1.getNickname();
 			HttpSession session = request.getSession();
 			session.setAttribute("dto", dto1);
 			nextpage ="index.jsp";
-			
 		} else {
 			nextpage = "LoginFalse.jsp";
 		}

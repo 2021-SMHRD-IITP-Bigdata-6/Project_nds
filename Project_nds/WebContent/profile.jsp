@@ -26,7 +26,6 @@
     <meta itemprop="description" content="instagram clone">
     <meta itemprop="image" content="http://kindtiger.dothome.co.kr/insta/imgs/instagram.jpeg">
 
-
     <title>instagram</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/common.css">
@@ -90,7 +89,7 @@
                 <div class="detail">
                     <div class="top">
                         <div class="user_nick"> <%=dto.getNickname()%></div>
-                        <a href="UpdateCon.do" class="profile_edit">프로필편집</a>
+                        <a href="profile_edit.jsp" class="profile_edit">프로필편집</a>
                         <a href="LogoutCon.do" class="logout">로그아웃</a>
                     </div>
 

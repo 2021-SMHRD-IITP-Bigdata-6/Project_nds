@@ -108,7 +108,7 @@
 						</label> 
 						<label> 일반회원 <input type="radio" value="1" name='mb_part' checked="checked">
 						</label>
-						 <input type="submit" id="submit_btn" value="로그인" class="submit_btn" >
+						 <input type="submit" id="submit_btn" value="회원가입" class="submit_btn" >
 					</form>
 
 				</div>

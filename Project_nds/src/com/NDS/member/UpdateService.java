@@ -23,6 +23,7 @@ public class UpdateService implements command{
 			String tel = request.getParameter("mb_tel");
 			String id = dto.getId();
 			memberDAO dao = new memberDAO();
+			
 			int cnt = dao.update(pw, nick, tel, id);
 
 			if (cnt > 0) {
