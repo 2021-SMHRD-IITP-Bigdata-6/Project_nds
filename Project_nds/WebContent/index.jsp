@@ -318,7 +318,7 @@
         setTimeout(function () {
           var addComment = document.createElement("div");
           addComment.classList.add("user_feedbox")
-          addComment.innerHTML = `<div class="top">
+          addComment.innerHTML = <div class="top">
               <div class="user_container">
                 <div class="profile_img">
                   <img src="imgs/thumb.jpeg" alt="프로필이미지">

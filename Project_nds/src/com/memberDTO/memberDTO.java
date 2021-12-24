@@ -2,25 +2,31 @@ package com.memberDTO;
 
 public class memberDTO {
 
-	String email;
+	String id;
 	String pw;
 	String nickname;
-	String sort;
+	String tel;
+	String part;
 	
-	public memberDTO(String email, String pw, String nickname, String sort) {
-		this.email = email;
+
+
+
+	public memberDTO(String id, String pw, String nickname, String tel, String part) {
+		this.id = id;
 		this.pw = pw;
 		this.nickname = nickname;
-		this.sort = sort;
+		this.tel = tel;
+		this.part = part;
 	}
 	
+	
 
-	public String getEmail() {
-		return email;
+	public String getId() {
+		return id;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getPw() {
@@ -39,14 +45,34 @@ public class memberDTO {
 		this.nickname = nickname;
 	}
 
-	public String getSort() {
-		return sort;
+	public String getTel() {
+		return tel;
 	}
 
-	public void setSort(String sort) {
-		this.sort = sort;
+	public void setTel(String tel) {
+		this.tel = tel;
 	}
 
-	
+	public String getPart() {
+		return part;
+	}
+
+	public void setPart(String part) {
+		this.part = part;
+	}
+
+	public memberDTO(String id, String pw) {
+		this.id = id;
+		this.pw = pw;
+	}
+
+	public memberDTO(String id, String nickname, String tel, String part) {
+		this.id = id;
+		this.nickname = nickname;
+		this.tel = tel;
+		this.part = part;
+		
+	}
+
 	
 }

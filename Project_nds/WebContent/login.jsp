@@ -79,15 +79,15 @@
 
                 <h1 class="sprite_insta_big_logo title"></h1>
 
-                <form action="LoginCon" method="post">
-                    <p class="login_user_email">
-                        <label for="user_email">사용자명:</label>
-                        <input type="text" name="email">
+                <form action="LoginCon.do" method="post">
+                    <p class="login_user_mb_id">
+                        <label for="user_mb_id">사용자명:</label>
+                        <input type="text" name="mb_id">
                     </p>
 
                     <p class="login_user_password">
                         <label for="user_password">비밀번호:</label>
-                        <input type="password" name="pw">
+                        <input type="password" name="mb_pw">
                     </p>
 
                     <input type="submit" id="submit_btn" value="로그인" class="submit_btn">

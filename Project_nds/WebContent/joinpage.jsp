@@ -85,24 +85,28 @@
 
 					<h1 class="sprite_insta_big_logo title"></h1>
 
-					<form action="JoinCon" method="post">
-						<p class="join_user_email">
-							<label for="user_email">사용자명:</label> <input type="text"
-								name="email">
+					<form action="JoinCon.do" method="post">
+						<p class="join_user_mb_id">
+							<label for="user_mb_id">사용자명:</label> <input type="text"
+								name="mb_id">
 						</p>
 
-						<p class="join_user_password">
-							<label for="user_password">비밀번호:</label> <input type="password"
-								name="pw">
+						<p class="join_user_mb_pw">
+							<label for="user_mb_pw">비밀번호:</label> <input type="password"
+								name="mb_pw">
 						</p>
-						<p class="join_user_nickname">
-							<label for="user_nickname">닉네임:</label> <input type="text"
-								name="nickname">
+						<p class="join_user_mb_nick">
+							<label for="user_mb_nick">닉네임:</label> <input type="text"
+								name="mb_nick">
 						</p>
-						<label for="user_sortation">구분 :</label>
-						<label>상담사 <input type="radio" value="상담사" name='sort'>
+						<p class="join_user_mb_tel">
+							<label for="user_mb_tel">전화번호:</label> <input type="text"
+								name="mb_tel">
+						</p>
+						<label for="user_mb_part">구분 :</label>
+						<label>상담사 <input type="radio" value="0" name='mb_part'>
 						</label> 
-						<label> 일반회원 <input type="radio" value="일반회원" name='sort' checked="checked">
+						<label> 일반회원 <input type="radio" value="1" name='mb_part' checked="checked">
 						</label>
 						 <input type="submit" id="submit_btn" value="로그인" class="submit_btn" >
 					</form>

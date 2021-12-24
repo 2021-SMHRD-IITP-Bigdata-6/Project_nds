@@ -90,8 +90,8 @@
                 <div class="detail">
                     <div class="top">
                         <div class="user_nick"> <%=dto.getNickname()%></div>
-                        <a href="profile_edit.jsp" class="profile_edit">프로필편집</a>
-                        <a href="LogoutCon" class="logout">로그아웃</a>
+                        <a href="UpdateCon.do" class="profile_edit">프로필편집</a>
+                        <a href="LogoutCon.do" class="logout">로그아웃</a>
                     </div>
 
                     <ul class="middle">
