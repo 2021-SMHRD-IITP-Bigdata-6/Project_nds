@@ -101,7 +101,7 @@
           <a href="login.jsp">
             <div class="sprite_compass_icon"></div>
           </a>
-          <a href="follow.jsp">
+          <a href="survey.jsp">
             <div class="sprite_heart_icon_outline"></div>
           </a>
           <a href="profile.jsp">
