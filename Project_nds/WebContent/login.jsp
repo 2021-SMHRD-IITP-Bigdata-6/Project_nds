@@ -32,8 +32,17 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/login.css">
     <link rel="shortcut icon" href="imgs/instagram.png">
-
+<%
+memberDTO dto = null;
+HttpSession se = request.getSession(); %>
+<% dto = (memberDTO)se.getAttribute("dto");
+boolean login_check = true;
+if(dto==null){
+	login_check = false;
+}
+%>
 </head>
+<script src="js/jquery-3.6.0.min.js"></script>
 <body>
 
 <section id="container">
@@ -42,7 +51,7 @@
         <section class="h_inner">
 
             <h1 class="logo">
-                <a href="index.jsp">
+                <a href="login.jsp">
                     <div class="sprite_insta_icon"></div>
                     <div>
                         <div class="sprite_write_logo"></div>
@@ -58,16 +67,19 @@
                     <span>검색</span>
                 </div>
             </div>
-
+            
             <div class="right_icons">
-                <a href="new_post.jsp"><div class="sprite_camera_icon"></div></a>
-                <a href="login.jsp"><div class="sprite_compass_icon"></div></a>
-                <a href="follow.jsp"><div class="sprite_heart_icon_outline"></div></a>
-                <a href="profile.jsp"><div class="sprite_user_icon_outline"></div></a>
+             
+                
+                <a href="login.jsp" class="cicon"><div class="sprite_camera_icon" ></div></a>
+                <a href="login.jsp" class="cicon"><div class="sprite_compass_icon" ></div></a>
+                <a href="login.jsp" class="cicon"><div class="sprite_heart_icon_outline" ></div></a>
+                <a href="login.jsp" class="cicon"><div class="sprite_user_icon_outline" ></div></a>
+           
             </div>
+            
         </section>
     </header>
-
 
 
     <div id="main_container">
@@ -105,8 +117,14 @@
     </div>
 
 </section>
-
-
+            <script type="text/javascript">
+          		$(".cicon").click(function() {
+          			console.log(<%=login_check%>)
+          			if(<%=login_check %> == false){
+						alert("로그인을 해주세요!");
+          			}
+          		});
+          	</script>
 <script src="js/insta.js"></script>
 </body>
 </html>
