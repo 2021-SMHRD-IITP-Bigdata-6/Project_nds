@@ -25,26 +25,20 @@
     <meta itemprop="name" content="instagram">
     <meta itemprop="description" content="instagram clone">
     <meta itemprop="image" content="http://kindtiger.dothome.co.kr/insta/imgs/instagram.jpeg">
-
-    <title>instagram</title>
+<%
+memberDTO dto = null;
+HttpSession se = request.getSession(); %>
+<% dto = (memberDTO)se.getAttribute("dto");%>
+    <title>공터</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/login.css">
     <link rel="shortcut icon" href="imgs/instagram.png">
-<%
-memberDTO dto = null;
-HttpSession se = request.getSession(); %>
-<% dto = (memberDTO)se.getAttribute("dto");
-boolean login_check = true;
-if(dto==null){
-	login_check = false;
-}
-%>
+
 </head>
 <script src="js/jquery-3.6.0.min.js"></script>
 <body>
-
 
 <section id="container">
 
@@ -92,40 +86,30 @@ if(dto==null){
 
                 <h1 class="sprite_insta_big_logo title"></h1>
 
-                <form action="LoginCon.do" method="post">
-                    <p class="login_user_mb_id">
-                        <label for="user_mb_id">사용자명:</label>
-                        <input type="text" name="mb_id">
-                    </p>
-
-                    <p class="login_user_password">
-                        <label for="user_password">비밀번호:</label>
+                <form action="UpdateCon.do" method="post">
+                <p> <%=dto.getNickname()%>님의 프로필 편집</p> 
+                    <p class="edit_user_password">
+                        <label for="user_epassword"> 비밀번호 변경:</label>
                         <input type="password" name="mb_pw">
                     </p>
+                    <p class="edit_user_tel">
+                        <label for="user_etel">전화번호 변경 :</label>
+                        <input type="text" name="mb_tel">
+                    </p>
+                    <p class="edit_user_nickname">
+                        <label for="user_enick"> 닉네임 변경 :</label>
+                        <input type="text" name="mb_nick">
+                    </p>
 
-                    <input type="submit" id="submit_btn" value="로그인" class="submit_btn">
+                    <input type="submit" id="submit_btn" value="변경하기" class="submit_btn">
                 </form>
 
-            </div>
-
-            <div class="bottom_box">
-                <div>
-                    <span>아이디가 없으신가요?</span><a href="joinpage.jsp">회원가입</a>
-                </div>
             </div>
 
         </div>
     </div>
 
 </section>
-            <script type="text/javascript">
-          		$(".cicon").click(function() {
-          			console.log(<%=login_check%>)
-          			if(<%=login_check %> == false){
-						alert("로그인을 해주세요!");
-          			}
-          		});
-          	</script>
 <script src="js/insta.js"></script>
 </body>
 </html>

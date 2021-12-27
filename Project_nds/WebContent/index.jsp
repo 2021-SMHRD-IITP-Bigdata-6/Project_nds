@@ -131,8 +131,8 @@ for (int i = 0; i < post_info.size(); i++) {
 					</a>
 				</div>
 
-			</section>
 
+			</section>
 		</header>
 		<section id="main_container">
 			<div id="inner">

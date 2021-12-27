@@ -4,9 +4,10 @@ body {
 
 .sprite_insta_icon {
     display: inline-block;
-    background: url('../imgs/background01.png') no-repeat -53px -235px;
-    width: 22px;
-    height: 22px;
+    background : url('../imgs/shimpyo.png') no-repeat 0px 0px;
+    width: 87px;
+    height: 78px;
+    
 }
 
 .sprite_write_logo {

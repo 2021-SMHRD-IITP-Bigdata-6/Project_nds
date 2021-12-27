@@ -9,6 +9,18 @@ public class memberDTO {
 	String part;
 	
 
+	public memberDTO(String id, String pw) {
+		this.id = id;
+		this.pw = pw;
+	}
+	
+	public memberDTO(String id, String nickname, String tel, String part) {
+		this.id = id;
+		this.nickname = nickname;
+		this.tel = tel;
+		this.part = part;
+		
+	}
 
 
 	public memberDTO(String id, String pw, String nickname, String tel, String part) {
@@ -61,18 +73,6 @@ public class memberDTO {
 		this.part = part;
 	}
 
-	public memberDTO(String id, String pw) {
-		this.id = id;
-		this.pw = pw;
-	}
-
-	public memberDTO(String id, String nickname, String tel, String part) {
-		this.id = id;
-		this.nickname = nickname;
-		this.tel = tel;
-		this.part = part;
-		
-	}
 
 	
 }

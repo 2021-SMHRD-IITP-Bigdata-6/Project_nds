@@ -66,11 +66,6 @@ public class memberDAO {
 			getConn();
 
 			String sql = "insert into tbl_member values (?,?,?,?,?,default,default)";
-			System.out.println(dto.getId());
-			System.out.println(dto.getPw());
-			System.out.println(dto.getNickname());
-			System.out.println(dto.getTel());
-			System.out.println(dto.getPart());
 			
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getId());
@@ -117,7 +112,7 @@ public class memberDAO {
 	}
 
 	// ---------------------------------------------------------------
-	public memberDTO login(memberDTO dto) {
+	public memberDTO login(memberDTO dto1) {
 
 		try {
 			getConn();
@@ -128,29 +123,26 @@ public class memberDAO {
 				System.out.println("연결실패");
 			}
 			
-			String id = dto.getId();
-			
-			System.out.println(id);
-			
+			String id = dto1.getId();
 			String sql = "select * from tbl_member where mb_id = ?";
-
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, id);
 
 			rs = psmt.executeQuery();
 
 			if (rs.next()) {
+				
 				String getid = rs.getString(1);
 				String getpw = rs.getString(2);
 				String getnick = rs.getString(3);
 				String gettel = rs.getString(4);
 				String getpart = rs.getString(5);
-
-				if (dto.getPw().equals(getpw)) {
+				
+				if (dto1.getPw().equals(getpw)) {
 					dto = new memberDTO(getid, getnick, gettel, getpart);
+				
 				}
 			}
-
 		} catch (Exception e) {
 			System.out.println("실패");
 			e.printStackTrace();
