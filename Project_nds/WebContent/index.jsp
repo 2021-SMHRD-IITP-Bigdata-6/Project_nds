@@ -1,6 +1,5 @@
 <%@page import="com.memberDTO.memberDTO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 
@@ -340,7 +339,7 @@
                   <div id="user_juno">강아지가 너무 귀여워요~!</div>
                 </div>
               </div>
-            </div>`
+            </div>
           document.querySelector('article').appendChild(addComment);
           console.log(document.querySelector('article'))
         }, 300)
