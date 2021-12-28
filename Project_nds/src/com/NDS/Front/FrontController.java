@@ -15,6 +15,7 @@ import com.NDS.member.LogoutService;
 import com.NDS.member.UpdateService;
 import com.inter.command;
 import com.memberDAO.memberDAO;
+import com.snsDAO.snsDAO;
 
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
@@ -22,8 +23,6 @@ public class FrontController extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		System.out.println("호출성공");
-
 		String uri = request.getRequestURI();
 		System.out.println(uri);
 		String path = request.getContextPath();
@@ -58,11 +57,22 @@ public class FrontController extends HttpServlet {
 
 			String id = request.getParameter("id");
 			
+			
 			memberDAO dao = new memberDAO();
 			boolean check = dao.IdCheck(id);
 			
 			PrintWriter out = response.getWriter();
 			out.print(check);
+			
+		} else if ( command.equals("actor_comment.do")){
+			
+			String comment = request.getParameter("comment");
+			String mbid = request.getParameter("mbid");
+			snsDAO dao = new snsDAO();
+			dao.feed(mbid, comment);
+			
+			PrintWriter out = response.getWriter();
+			out.print(mbid);
 			
 		}
 		

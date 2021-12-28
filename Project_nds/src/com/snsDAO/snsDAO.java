@@ -79,4 +79,24 @@ public class snsDAO {
 		}
 		return mb_id;
 	}
+	
+	public void feed(String mbid, String comment) {
+		try {
+			getConn();
+			
+			String sql = "INSERT INTO tbl_sns values (default, ?, default, default, ?, '#19')";
+
+			psmt = conn.prepareStatement(sql);
+			
+			psmt.setString(1, comment);
+			psmt.setString(2, mbid);
+			
+			cnt = psmt.executeUpdate();
+
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println();
+	}
 }
