@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -13,7 +14,6 @@
     <meta property="og:title" content="instagram">
     <meta property="og:description" content="instagram clone">
     <meta property="og:image" content="http://kindtiger.dothome.co.kr/insta/imgs/instagram.jpeg">
-    .
     <!-- Twitter Meta Tags / 트위터 -->
     <meta name="twitter:card" content="instagram clone">
     <meta name="twitter:title" content="instagram">
@@ -24,13 +24,14 @@
     <meta itemprop="name" content="instagram">
     <meta itemprop="description" content="instagram clone">
     <meta itemprop="image" content="http://kindtiger.dothome.co.kr/insta/imgs/instagram.jpeg">
-
+	
     <title>instagram</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/login.css">
     <link rel="shortcut icon" href="imgs/instagram.png">
+	
 <%
 memberDTO dto = null;
 HttpSession se = request.getSession(); %>
@@ -40,9 +41,27 @@ if(dto==null){
 	login_check = false;
 }
 %>
+	
+	
 </head>
 <script src="js/jquery-3.6.0.min.js"></script>
 <body>
+	<style>
+		#container{
+			
+			border: 0;
+    		padding: 0;
+			height : 100vh;
+			background-image : url('https://t1.daumcdn.net/blogfile/fs7/34_blog_2007_08_25_21_50_46d0253424ddd?x-content-disposition=inline&filename=0.jpg');
+			background-repeat : no-repeat;
+			background-size : cover;
+			min-height: 100%;
+    		background-position: center;
+				
+			
+		}
+	
+	</style>
 
 
 <section id="container">
@@ -58,22 +77,16 @@ if(dto==null){
                     </div>
                 </a>
             </h1>
-
-            <div class="search_field">
-                <input type="text" placeholder="검색" tabindex="0">
-
-                <div class="fake_field">
-                    <span class=sprite_small_search_icon></span>
-                    <span>검색</span>
-                </div>
-            </div>
+            
             
             <div class="right_icons">
              
                 
-                <a href="login.jsp" class="cicon"><div class="sprite_camera_icon" ></div></a>
-                <a href="login.jsp" class="cicon"><div class="sprite_compass_icon" ></div></a>
+                <a href="login.jsp" class="cicon"><div class="sprite_home_icon" ></div></a>
+                <a href="login.jsp" class="cicon"><div class="sprite_survey_icon" ></div></a>
+                <a href="login.jsp" class="cicon"><div class="sprite_phone_icon" ></div></a>
                 <a href="login.jsp" class="cicon"><div class="sprite_heart_icon_outline" ></div></a>
+                <a href="login.jsp" class="cicon"><div class="sprite_map_icon" ></div></a>
                 <a href="login.jsp" class="cicon"><div class="sprite_user_icon_outline" ></div></a>
            
             </div>
@@ -103,18 +116,17 @@ if(dto==null){
                     </p>
 
                     <input type="submit" id="submit_btn" value="로그인" class="submit_btn">
+                    <input type="submit" id="submit_btn" value="회원가입" class="submit_btn">
+                    
+                   
                 </form>
 
-            </div>
+         	</div>
 
-            <div class="bottom_box">
-                <div>
-                    <span>아이디가 없으신가요?</span><a href="joinpage.jsp">회원가입</a>
-                </div>
-            </div>
-
-        </div>
+          </div>
+    
     </div>
+    
 
 </section>
             <script type="text/javascript">

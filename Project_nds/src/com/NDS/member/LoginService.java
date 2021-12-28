@@ -29,7 +29,7 @@ public class LoginService implements command{
 		if (dto1 != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("dto", dto1);
-			nextpage ="index.jsp";
+			nextpage ="SnsService";
 		} else {
 			nextpage = "LoginFalse.jsp";
 		}
