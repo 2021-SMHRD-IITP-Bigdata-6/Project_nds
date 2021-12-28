@@ -46,5 +46,4 @@ public class snsDTO {
 	public void setHash_tag(String hash_tag) {
 		this.hash_tag = hash_tag;
 	}
-
 }

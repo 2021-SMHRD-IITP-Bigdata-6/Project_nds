@@ -88,7 +88,9 @@
 					<form action="JoinCon.do" method="post">
 						<p class="join_user_mb_id">
 							<label for="user_mb_id">사용자명:</label> <input type="text"
-								name="mb_id">
+								name="mb_id" id="Join_ID">
+								<button type="button" id ="Check" onclick="IdCheck()">중복체크</button>
+								<p id="result"> </p>
 						</p>
 
 						<p class="join_user_mb_pw">
@@ -118,16 +120,35 @@
 						<span>아이디가 이미 있으신가요?</span><a href="login.jsp">로그인</a>
 					</div>
 				</div>
-
-
 			</div>
-
 		</div>
-
-
 	</section>
+			<script src="js/jquery-3.6.0.min.js"></script>
+			<script type="text/javascript">
+			function IdCheck() {
+				$.ajax({
+					url : "check.do",
+					type : "get",
+					data: {
+						"id" : $('#Join_ID').val()
+					},
+					success : function(res) {
+						console.log(res)
+						
+						if(res == 'true'){
+							$('#result').html("중복된 아이디 입니다.").css("color","red");
+						}
+						else{
+							$('#result').html("사용가능한 아이디 입니다.").css("color","green");
+						}
+					},
+					error : function () {
+					 	alert("요청실패!");
+					}
+					
+				});
+			}
+			</script>
 
-
-	<script src="js/insta.js"></script>
 </body>
 </html>

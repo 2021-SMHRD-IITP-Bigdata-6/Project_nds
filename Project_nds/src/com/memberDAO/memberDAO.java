@@ -152,6 +152,29 @@ public class memberDAO {
 		return dto;
 	}
 
+	public boolean IdCheck(String id) {
+		
+		try {
+
+			getConn();
+			String sql = "select * from tbl_member where mb_id =?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			rs = psmt.executeQuery();
+
+			check = rs.next();
+			
+		} catch (Exception e) {
+			System.out.println("½ÇÆÐ");
+			e.printStackTrace();
+		} finally {
+			getclose();
+		}
+
+		return check;
+		
+	}
+
 	// ---------------------------------------------------------------
 	
 	

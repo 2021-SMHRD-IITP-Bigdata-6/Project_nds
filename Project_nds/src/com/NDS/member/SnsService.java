@@ -16,7 +16,6 @@ import com.snsDTO.snsDTO;
 
 @WebServlet("/SnsService")
 public class SnsService extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
@@ -25,9 +24,10 @@ public class SnsService extends HttpServlet {
 		ArrayList<snsDTO> list = dao.sns();
 		
 		System.out.println(list.get(0).getMb_id());
+		System.out.println(list.size());
 		
 		request.setAttribute("post_info", list);
-		
+		// 여기있는 getMb_id값이 고정되어있어서 8밑으로는 안내려가는거같네요
 		RequestDispatcher dis = request.getRequestDispatcher("index.jsp");
 		dis.forward(request, response);
 	}
