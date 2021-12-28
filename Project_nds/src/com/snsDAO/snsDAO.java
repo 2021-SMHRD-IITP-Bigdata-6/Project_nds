@@ -59,4 +59,24 @@ public class snsDAO {
 		}
 		return post;
 	}
+	public ArrayList<String> mb() {
+		ArrayList<String> mb_id = new ArrayList<String>();
+		try {
+			getConn();
+			
+			String sql = "select * from tbl_sns";
+
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+
+				String get_mbid = rs.getString(5);
+				mb_id.add(get_mbid); 
+			}			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mb_id;
+	}
 }
