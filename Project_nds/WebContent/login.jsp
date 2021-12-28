@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/login.css">
     <link rel="shortcut icon" href="imgs/instagram.png">
+    <script src="js/jquery-3.6.0.min.js"></script>
 <%
 memberDTO dto = null;
 HttpSession se = request.getSession(); %>
@@ -42,7 +43,7 @@ if(dto==null){
 }
 %>
 </head>
-<script src="js/jquery-3.6.0.min.js"></script>
+
 <body>
 
 
@@ -53,10 +54,12 @@ if(dto==null){
 
             <h1 class="logo">
                 <a href="login.jsp">
-                    <div class="sprite_insta_icon"></div>
-                    <div>
-                        <div class="sprite_write_logo"></div>
+                <div>
+                    <div class="sprite_shimpyo_icon"></div>
                     </div>
+                    <div>
+                     <div class="sprite_write_logo"></div>
+                     </div>
                 </a>
             </h1>
 
@@ -126,6 +129,5 @@ if(dto==null){
           			}
           		});
           	</script>
-<script src="js/insta.js"></script>
 </body>
 </html>

@@ -140,8 +140,6 @@ for (int i = 0; i < post_info.size(); i++) {
 						<div class="sprite_user_icon_outline"></div>
 					</a>
 				</div>
-
-
 			</section>
 		</header>
 		<section id="main_container">

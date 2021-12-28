@@ -1,6 +1,7 @@
 package com.NDS.Front;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +14,7 @@ import com.NDS.member.LoginService;
 import com.NDS.member.LogoutService;
 import com.NDS.member.UpdateService;
 import com.inter.command;
+import com.memberDAO.memberDAO;
 
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
@@ -52,7 +54,17 @@ public class FrontController extends HttpServlet {
 			com = new UpdateService();
 			nextpage = com.execute(request, response);
 
-		} 
+		} else if (command.equals("check.do")) {
+
+			String id = request.getParameter("id");
+			
+			memberDAO dao = new memberDAO();
+			boolean check = dao.IdCheck(id);
+			
+			PrintWriter out = response.getWriter();
+			out.print(check);
+			
+		}
 		
 		if(nextpage !=null) {
 		response.sendRedirect(nextpage);
