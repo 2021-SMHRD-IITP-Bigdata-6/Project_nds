@@ -40,7 +40,7 @@ public class snsDAO {
 		try {
 			getConn();
 			
-			String sql = "select * from tbl_sns";
+			String sql = "select * from tbl_sns order by sns_seq desc";
 
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
@@ -59,26 +59,7 @@ public class snsDAO {
 		}
 		return post;
 	}
-	public ArrayList<String> mb() {
-		ArrayList<String> mb_id = new ArrayList<String>();
-		try {
-			getConn();
-			
-			String sql = "select * from tbl_sns";
-
-			psmt = conn.prepareStatement(sql);
-			rs = psmt.executeQuery();
-
-			while (rs.next()) {
-
-				String get_mbid = rs.getString(5);
-				mb_id.add(get_mbid); 
-			}			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return mb_id;
-	}
+	
 	
 	public void feed(String mbid, String comment) {
 		try {
@@ -97,6 +78,27 @@ public class snsDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println();
 	}
+	public ArrayList<snsDTO> search(String search_post) {
+		ArrayList<snsDTO> post = new ArrayList<snsDTO>(); 
+		try {
+			getConn();
+			String sql = "select * from tbl_sns where sns_content like ? order by sns_seq desc";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, "%" +search_post+ "%");
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				String get_seq = rs.getString(1);
+				String get_content = rs.getString(2);
+				int get_likes = rs.getInt(4);
+				String get_mbid = rs.getString(5);
+				String get_hash = rs.getString(6);
+				dto = new snsDTO(get_seq,get_content,get_likes,get_mbid,get_hash);
+				post.add(dto);
+			}			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return post;
+	} 
 }

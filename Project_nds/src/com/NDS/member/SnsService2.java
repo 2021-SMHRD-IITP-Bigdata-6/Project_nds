@@ -25,12 +25,14 @@ public class SnsService2 extends HttpServlet {
 		snsDAO dao = new snsDAO();
 		ArrayList<snsDTO> list = dao.sns();
 		
+		
 		System.out.println(list.get(0).getMb_id());
 		System.out.println(list.size());
 		
 		Gson gson = new Gson();
 		String list_json = gson.toJson(list);
 		
+		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
 		out.print(list_json);
 		
