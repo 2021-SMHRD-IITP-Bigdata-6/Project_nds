@@ -33,9 +33,8 @@
 }
 
 .statusBar{
-    border-radius: 20px;
-    height: 100%;
-   /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#febbbb+0,fe9090+43,ff5c5c+100 */
+border-radius: 20px;
+height: 100%;
 background: #febbbb; /* Old browsers */
 background: -moz-linear-gradient(top,  #febbbb 0%, #fe9090 43%, #ff5c5c 100%); /* FF3.6-15 */
 background: -webkit-linear-gradient(top,  #febbbb 0%,#fe9090 43%,#ff5c5c 100%); /* Chrome10-25,Safari5.1-6 */

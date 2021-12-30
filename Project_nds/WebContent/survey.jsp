@@ -16,8 +16,8 @@
     <meta property = "og:description" content="십이간지로 알아보는 연애유형">
     
     <!-- favicon -->
-    <link rel="stylesheet" href="/img/favicon.ico">
-    <link rel="stylesheet" href="apple-touch-icon-precomposed" />
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="/img/favicon.ico" />
     <title>십이간지 연애유형</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1">

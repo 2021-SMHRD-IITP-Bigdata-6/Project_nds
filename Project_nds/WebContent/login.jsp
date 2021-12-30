@@ -31,11 +31,9 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/login.css">
     <link rel="shortcut icon" href="imgs/instagram.png">
-<<<<<<< HEAD
-	
-=======
+
     <script src="js/jquery-3.6.0.min.js"></script>
->>>>>>> branch 'master' of https://github.com/2021-SMHRD-IITP-Bigdata-6/Project_nds.git
+
 <%
 memberDTO dto = null;
 HttpSession se = request.getSession(); %>
