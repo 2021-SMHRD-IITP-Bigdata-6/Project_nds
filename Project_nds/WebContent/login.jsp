@@ -30,11 +30,8 @@
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/login.css">
-    <link rel="shortcut icon" href="imgs/instagram.png">
-
     <link rel="shortcut icon" href="imgs/instagram.png">   
     <script src="js/jquery-3.6.0.min.js"></script>
-
 <%
 memberDTO dto = null;
 HttpSession se = request.getSession(); %>
@@ -42,6 +39,8 @@ HttpSession se = request.getSession(); %>
 boolean login_check = true;
 if(dto==null){
    login_check = false;
+}else if(dto != null){
+	session.removeAttribute("dto");
 }
 %>
    
@@ -75,7 +74,7 @@ if(dto==null){
             <h1 class="logo">
                 <a href="login.jsp">
                 <div>
-                    <div class="sprite_shimpyo_icon"></div>
+                    <div class="sprite_insta_icon"></div>
                     </div>
                     <div>
                      <div class="sprite_write_logo"></div>
@@ -121,10 +120,8 @@ if(dto==null){
                     </p>
 
                     <input type="submit" id="submit_btn" value="로그인" class="submit_btn">
-                    <a href="joinpage.jsp"><input type="submit" id="submit_btn" value="회원가입" class="submit_btn"></a>
-                   
                 </form>
-
+                <a href="joinpage.jsp"> <input type="submit" id="submit_btn" value="회원가입" class="submit_btn"></a>
             </div>
 
           </div>

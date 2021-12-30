@@ -162,15 +162,12 @@ String g = dto.getAd();
 					<input type="submit" onClick="search_post()">
 				</div>
 				<div class="right_icons">
-					<a href="new_post.html">
-						<div class="sprite_camera_icon"></div>
-					</a> <a href="login.html">
-						<div class="sprite_compass_icon"></div>
-					</a> <a href="follow.html">
-						<div class="sprite_heart_icon_outline"></div>
-					</a> <a href="profile.html">
-						<div class="sprite_user_icon_outline"></div>
-					</a>
+					 <a href="login.jsp" class="cicon"><div class="sprite_home_icon" ></div></a>
+                <a href="survey.jsp" class="cicon"><div class="sprite_survey_icon" ></div></a>
+                <a href="login.jsp" class="cicon"><div class="sprite_phone_icon" ></div></a>
+                <a href="survey.jsp" class="cicon"><div class="sprite_heart_icon_outline" ></div></a>
+                <a href="KaKaoMap2.jsp" class="cicon"><div class="sprite_map_icon" ></div></a>
+                <a href="profile.jsp" class="cicon"><div class="sprite_user_icon_outline" ></div></a>
 				</div>
 
 
@@ -237,8 +234,15 @@ String g = dto.getAd();
 							<div class="comment_container">
 								<div class="comment" id="comment-list-ajax-post37">
 									<div class="comment-detail">
-										<div class="nick_name m_text">박경섭</div>
-										<div class="user_juno">강아지가 너무 귀여워요~!</div>
+										<div class="nick_name m_text"><%=dto.getId() %></div><br>
+				<div class="nick_name m_text">댓글창</div>
+				<div class="user_juno">
+					<input type="text" id="b<%=j_id%>" class="<%=j_id%>">
+					<button type=submit onclick="sendCmCt(<%=j_id%>)">작성</button>
+					<button type=submit onclick="loadCmct(<%=j_id%>)">댓글보기</button>
+					<br>
+					<p class="a<%=j_id%>"></p>
+				</div>
 									</div>
 								</div>
 							</div>
@@ -364,8 +368,14 @@ String g = dto.getAd();
 						<div class="comment_container">
 							<div class="comment" id="comment-list-ajax-post37">
 								<div class="comment-detail">
-									<div class="nick_name m_text">박경섭</div>
-									<div class="user_juno">강아지가 너무 귀여워요~!</div>
+									<div class="nick_name m_text"><%=dto.getId()%></div>
+        				<div class="user_juno">
+        					<input type="text" id=b`+ j_id+` class=`+ j_id+`>
+        					<button type=submit onclick=sendCmCt(`+j_id+`)>작성</button>
+        					<button type=submit onclick=loadCmct(`+j_id+`)>댓글보기</button>
+        					<br>
+        					<p class=a`+j_id+`></p>
+        				</div>
 								</div>
 							</div>
 						</div>`;
@@ -437,8 +447,14 @@ String g = dto.getAd();
 					<div class="comment_container">
 						<div class="comment" id="comment-list-ajax-post37">
 							<div class="comment-detail">
-								<div class="nick_name m_text">박경섭</div>
-								<div class="user_juno">강아지가 너무 귀여워요~!</div>
+								<div class="nick_name m_text"><%=dto.getId()%></div>
+        				<div class="user_juno">
+        					<input type="text" id=b`+ j_id+` class=`+ j_id+`>
+        					<button type=submit onclick=sendCmCt(`+j_id+`)>작성</button>
+        					<button type=submit onclick=loadCmct(`+j_id+`)>댓글보기</button>
+        					<br>
+        					<p class=a`+j_id+`></p>
+        				</div>
 							</div>
 						</div>
 					</div>`;
@@ -458,5 +474,65 @@ String g = dto.getAd();
   	
   
   </script>
+
+<script type="text/javascript">
+	function sendCmCt(seq) {
+		let mbid =document.getElementById("actor_id").innerHTML;
+		let jid = seq.toString();
+		$.ajax({
+			url : "comment.do",
+			type : "get",
+			data: {
+				"mb_id" : mbid,
+				"cm_ct" : $('#b'+seq).val(),
+				"cm_snsseq" : seq
+			},
+			success : function(cm_ct) {
+				
+				if(mb_id != null){
+					$('.a'+jid).after(cm_ct+"<br>");
+					console.log("성공");
+				}
+				else{
+					$('.a'+jid).html("작성 실패");
+				}
+			},
+			error : function () {
+				 alert("요청실패!");
+			}
+			
+		});
+	}
+	</script>
+	
+	<script type="text/javascript">
+	function loadCmct(seq) {
+		console.log(seq)
+		$.ajax({
+			url : "loadcomment.do",
+			type : "get",
+			dataType : "json",
+			data: {
+				"lcm_sns_seq" : seq,
+			},
+			success : function(res) {
+				
+				if(res != null){
+					
+					for (let i = 0; i < res.length; i++) {
+						$('.a'+seq).append(res[i].lmb_id +" : "+res[i].lcm_ct+"<br>");
+					}
+				}
+				else{
+					$('.a'+seq).html("작성된 댓글이 없습니다");
+				}
+			},
+			error : function () {
+				 alert("요청실패!");
+			}
+			
+		});
+	}
+	</script>
 </body>
 </html>

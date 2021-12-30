@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,23 +7,22 @@
 <title>Insert title here</title>
 <style type="text/css">
 /* 전체 공간에 지도를 담기위한 css */
-html, body, #map{
+html, body, #map {
 	width: 100%;
-	
-	
-	
 	height: 100%;
 }
-
 </style>
 <script src="js/jquery-3.6.0.min.js"></script>
 <!-- 지도 api불러오기 -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ee4a3f634ba9f6c1563f310d7769b6cb&libraries=services,clusterer,drawing"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5afb8b5a8624742289f1d328bfb669d3&libraries=services,clusterer,drawing"></script>
+
 </head>
 <body>
-<!--  지도 담을 공간 만들기 -->
-<div id = 'map'> </div>
-<script type="text/javascript">
+	<!--  지도 담을 공간 만들기 -->
+	<div id='map'></div>
+	<script type="text/javascript">
 // ajax로 음식점 이름, 주소, 전화번호 받아오기
 $.ajax({
 	url : 'Hospital_info', //요청할 url

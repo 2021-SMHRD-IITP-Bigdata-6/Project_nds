@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import javax.xml.ws.Response;
 
+import com.commentDTO.commentDTO;
 import com.memberDTO.memberDTO;
 
 
@@ -178,7 +180,63 @@ public class memberDAO {
 		
 	}
 
-	// ---------------------------------------------------------------
+	public void inputComment(String mb_id, String cm_ct, String cm_sns_seq) {
+		try {
+			String id = mb_id;
+			String comment = cm_ct;
+			int seq = Integer.parseInt(cm_sns_seq);
+			
+			getConn();
+			
+			String sql = "insert into tbl_comment values(default, ?, ?, default, ?)";
+			
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, seq);
+			psmt.setString(2, comment);
+			psmt.setString(3, id);
+		
+			cnt = psmt.executeUpdate();
+			
+			
+			System.out.println("cnt :" + cnt);
+				
+		} catch (Exception e) {
+			System.out.println("실패");
+			e.printStackTrace();
+		} finally {
+			getclose();
+		}
+	}
+
+	public ArrayList<commentDTO> loadComment(String lcm_sns_seq) {
+		ArrayList<commentDTO> arr = new ArrayList<commentDTO>();
+		try {
+			
+			getConn();
+			String sql = "select * from tbl_comment where sns_seq = ?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, lcm_sns_seq);
+		
+			rs = psmt.executeQuery();
+			
+			while (rs.next() == true) {
+				String lcm_ct = rs.getString(3);
+				String lmb_id = rs.getString(5);
+				commentDTO cdto = new commentDTO(lcm_ct,lmb_id);
+				arr.add(cdto);
+			}
+
+		} catch (Exception e) {
+			System.out.println("실패");
+			e.printStackTrace();
+		} finally {
+			getclose();
+		}
+		return arr;
+		
+		
+	}
+
 	
 	
 
