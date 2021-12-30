@@ -19,27 +19,27 @@ body {
 }
 
 .sprite_home_icon{
-	background: url('../imgs/background01.png') no-repeat -78px -260px;
-	width: 24px;
-	height: 24px;	
+   background: url('../imgs/background01.png') no-repeat -78px -260px;
+   width: 24px;
+   height: 24px;   
 }
 
 .sprite_survey_icon {
-	background: url('../imgs/background01.png') no-repeat -213px -202px;
-	width: 24px;
-	height: 24px;
+   background: url('../imgs/background01.png') no-repeat -213px -202px;
+   width: 24px;
+   height: 24px;
 }
 
 .sprite_phone_icon {
-	background: url('../imgs/background01.png') no-repeat 0 -234px;
-	width: 24px;
-	height: 24px;
+   background: url('../imgs/background01.png') no-repeat 0 -234px;
+   width: 24px;
+   height: 24px;
 }
 
 .sprite_map_icon{
-	background: url('../imgs/background01.png') no-repeat -300px -26px;
-	width: 18px;
-	height: 24px;
+   background: url('../imgs/background01.png') no-repeat -300px -26px;
+   width: 18px;
+   height: 24px;
 }
 
 
@@ -131,16 +131,16 @@ body {
 /*-------------------------------------//icons*/
 
 #container {
-	
-	border : 0;
-	padding : 0;
+   
+   border : 0;
+   padding : 0;
     background-image : url('https://mblogthumb-phinf.pstatic.net/MjAxOTA1MzBfMTI1/MDAxNTU5MjI1MTgxNjMy._s7sTPUk3deXhNu1Rz5pBKmFedXnuVvpbkT6IbTEU94g.dd0jgwndvRO1s-6-5gq1a6QwT4NuWwTYGJyiCulNyVwg.JPEG.bemine9_9/com_2.jpg?type=w800');
     display: flex;
     justify-content: center;
     flex-direction: column;
     background-repeat : no-repeat;
-	background-size : cover;
-	min-height: 100%;
+   background-size : cover;
+   min-height: 100%;
     background-position: center;
 }
 
@@ -344,11 +344,11 @@ body {
 
 /* 아이콘 간격벌리기*/
 a.cicon{
-	margin-left: 22px;
+   margin-left: 22px;
 }
 
 h1.logo{
-	left : 0px
+   left : 0px
 }
 
 @media screen and (max-width: 480px) {

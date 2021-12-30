@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	
+   
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -24,7 +24,7 @@
     <meta itemprop="name" content="instagram">
     <meta itemprop="description" content="instagram clone">
     <meta itemprop="image" content="http://kindtiger.dothome.co.kr/insta/imgs/instagram.jpeg">
-	
+   
     <title>instagram</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/common.css">
@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="css/login.css">
     <link rel="shortcut icon" href="imgs/instagram.png">
 
+    <link rel="shortcut icon" href="imgs/instagram.png">   
     <script src="js/jquery-3.6.0.min.js"></script>
 
 <%
@@ -40,30 +41,30 @@ HttpSession se = request.getSession(); %>
 <% dto = (memberDTO)se.getAttribute("dto");
 boolean login_check = true;
 if(dto==null){
-	login_check = false;
+   login_check = false;
 }
 %>
-	
-	
+   
+   
 </head>
 
 <body>
-	<style>
-		#container{
-			
-			border: 0;
-    		padding: 0;
-			height : 100vh;
-			background-image : url('https://t1.daumcdn.net/blogfile/fs7/34_blog_2007_08_25_21_50_46d0253424ddd?x-content-disposition=inline&filename=0.jpg');
-			background-repeat : no-repeat;
-			background-size : cover;
-			min-height: 100%;
-    		background-position: center;
-				
-			
-		}
-	
-	</style>
+   <style>
+      #container{
+         
+         border: 0;
+          padding: 0;
+         height : 100vh;
+         background-image : url('https://t1.daumcdn.net/blogfile/fs7/34_blog_2007_08_25_21_50_46d0253424ddd?x-content-disposition=inline&filename=0.jpg');
+         background-repeat : no-repeat;
+         background-size : cover;
+         min-height: 100%;
+          background-position: center;
+            
+         
+      }
+   
+   </style>
 
 
 <section id="container">
@@ -125,7 +126,7 @@ if(dto==null){
                    
                 </form>
 
-         	</div>
+            </div>
 
           </div>
     
@@ -134,12 +135,12 @@ if(dto==null){
 
 </section>
             <script type="text/javascript">
-          		$(".cicon").click(function() {
-          			console.log(<%=login_check%>)
-          			if(<%=login_check %> == false){
-						alert("로그인을 해주세요!");
-          			}
-          		});
-          	</script>
+                $(".cicon").click(function() {
+                   console.log(<%=login_check%>)
+                   if(<%=login_check %> == false){
+                  alert("로그인을 해주세요!");
+                   }
+                });
+             </script>
 </body>
 </html>
