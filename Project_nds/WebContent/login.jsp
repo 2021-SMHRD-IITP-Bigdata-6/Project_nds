@@ -118,8 +118,7 @@ if(dto==null){
                     </p>
 
                     <input type="submit" id="submit_btn" value="로그인" class="submit_btn">
-                    <input type="submit" id="submit_btn" value="회원가입" class="submit_btn">
-                    
+                    <a href="joinpage.jsp"><input type="submit" id="submit_btn" value="회원가입" class="submit_btn"></a>
                    
                 </form>
 

@@ -65,7 +65,7 @@ public class memberDAO {
 		try {
 			getConn();
 
-			String sql = "insert into tbl_member values (?,?,?,?,?,default,default)";
+			String sql = "insert into tbl_member values (?, ?, ?, ?, ?, default,default,default)";
 			
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getId());
