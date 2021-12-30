@@ -137,9 +137,12 @@ public class memberDAO {
 				String getnick = rs.getString(3);
 				String gettel = rs.getString(4);
 				String getpart = rs.getString(5);
+				String dbr = rs.getString(6);
+				String clf = rs.getString(7);
+				String vkf = rs.getString(8);
 				
 				if (dto1.getPw().equals(getpw)) {
-					dto = new memberDTO(getid, getnick, gettel, getpart);
+					dto = new memberDTO(getid, getpw, getnick, gettel, getpart,dbr,clf,vkf);
 				
 				}
 			}

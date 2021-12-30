@@ -93,6 +93,20 @@ public class FrontController extends HttpServlet {
 			PrintWriter out = response.getWriter();
 //			out.print(search_post);
 			out.print(list_json);
+		} else if (command.equals("love.do")) {
+
+			String love_cnt = request.getParameter("love_cnt");
+			String sns_seq = request.getParameter("sns_seq");
+			String mb = request.getParameter("mb");
+			System.out.println(love_cnt);
+			System.out.println(sns_seq);
+			System.out.println(mb);
+			snsDAO dao = new snsDAO();
+			int g = dao.love(love_cnt,sns_seq,mb);
+		
+			
+			PrintWriter out = response.getWriter();
+			out.print(mb);
 		}
 		
 		if(nextpage !=null) {

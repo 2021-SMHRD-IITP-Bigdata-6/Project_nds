@@ -57,7 +57,7 @@ body{
     margin-right: 30px;
 }
 
-#header .inner .logo .sprite_insta_icon:after{
+#header .inner .logo .sprite_insta_icon{
     content: '';
     width: 1px;
     height: 28px;
@@ -76,7 +76,7 @@ body{
     transition:all .5s;
 }
 
-#header.on .inner .logo .sprite_insta_icon:after{
+#header.on .inner .logo .sprite_insta_icon{
     opacity: 0;
 }
 #header.on .inner .logo div:nth-child(2){

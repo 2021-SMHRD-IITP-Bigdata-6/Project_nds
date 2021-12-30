@@ -1,3 +1,4 @@
+<%@page import="java.util.Arrays"%>
 <%@page import="com.snsDAO.snsDAO"%>
 <%@page import="com.memberDAO.memberDAO"%>
 <%@page import="java.util.ArrayList"%>
@@ -124,12 +125,15 @@ String j_id = "";
 int span_id = 10001;
 int k = 0;
 
-for (int i = 0; i < post_info.size(); i++) {
-	hash = post_info.get(i).getHash_tag();
-	mbid = post_info.get(i).getMb_id();
-	comment = post_info.get(i).getSns_content();
-	like_count = post_info.get(i).getSns_likes();
-}
+String mb_likes = dto.getSns_likes();
+String[] mb_seq = mb_likes.split(",");
+String a = dto.getId();
+String b = dto.getNickname();
+String c = dto.getPart();
+String d = dto.getPw();
+String e = dto.getTel();
+String f = dto.getSys();
+String g = dto.getAd();
 %>
 
 <body>
@@ -191,13 +195,9 @@ for (int i = 0; i < post_info.size(); i++) {
 						<div>
 							<button type="submit" id=reg_btn onClick="sum()">등록</button>
 						</div>
-						<form id = "for_moon">
-						<%
-							while (k < 10) { %>
-							<script type="text/javascript">
-							console.log(sc);
-							</script>
+						<form id="for_moon">
 							<%
+							while (k < 10) { 
 							hash = post_info.get(cnt).getHash_tag();
 							mbid = post_info.get(cnt).getMb_id();
 							comment = post_info.get(cnt).getSns_content();
@@ -207,7 +207,7 @@ for (int i = 0; i < post_info.size(); i++) {
 							k++;
 						%>
 						</form>
-						<div class="user_feedbox">
+						<div id="delete_div" class="user_feedbox">
 							<div class="top">
 								<div class="user_container">
 									<div class="profile_img">
@@ -217,10 +217,17 @@ for (int i = 0; i < post_info.size(); i++) {
 										<div class="nick_name m_text" id="outer"><%=mbid%></div>
 									</div>
 								</div>
-								<div class="heart_btn" id="outer">
+								<div class="heart_btn" id="outer"><%if(Arrays.asList(mb_seq).contains(j_id)==true){
+									System.out.println(Arrays.asList(mb_seq).contains(j_id));
+									%>
+								<div class="sprite_heart_icon_click" id=<%=j_id%> name="39"
+										data-name="heartbeat"
+										onClick="like_click(<%=like_count%>,this.id); love(this.id);"></div>
+								<%}  else {%>
 									<div class="sprite_heart_icon_outline" id=<%=j_id%> name="39"
 										data-name="heartbeat"
-										onClick="like_click(<%=like_count%>,this.id)"></div>
+										onClick="like_click(<%=like_count%>,this.id); love(this.id);"></div>
+										<%} %>
 								</div>
 								<div>
 									<span class="<%=j_id%>"><%=like_count%></span>
@@ -257,19 +264,39 @@ for (int i = 0; i < post_info.size(); i++) {
     function like_click(yn,click_id){
     	console.log(yn)
       if(yn == document.getElementsByClassName(click_id)[0].innerText) {
-        document.getElementById(click_id).style.background = "url('imgs/background01.png')";
+/*         document.getElementById(click_id).style.background = "url('imgs/background01.png')";
         document.getElementById(click_id).style.backgroundPositionX = "-26px";
-        document.getElementById(click_id).style.backgroundPositionY = "-261px";
-        /* document.getElementById("1").className = "sprite_heart_icon_click" */
-        document.getElementsByClassName(click_id)[0].innerText= parseInt(document.getElementsByClassName(click_id)[0].innerText) +1 ;        
+        document.getElementById(click_id).style.backgroundPositionY = "-261px"; */
+        document.getElementById(click_id).className = "sprite_heart_icon_click"
+        document.getElementsByClassName(click_id)[0].innerText= parseInt(document.getElementsByClassName(click_id)[0].innerText) +1;
       } else if (yn != document.getElementsByClassName(click_id)[0].innerText) {
-        document.getElementById(click_id).style.background = "url('imgs/background01.png')";
+/*         document.getElementById(click_id).style.background = "url('imgs/background01.png')";
         document.getElementById(click_id).style.backgroundPositionX = "-52px";
-        document.getElementById(click_id).style.backgroundPositionY = "-261px";
-        /* document.getElementById("1").className = "sprite_heart_icon_outline" */
+        document.getElementById(click_id).style.backgroundPositionY = "-261px"; */
+        document.getElementById(click_id).className = "sprite_heart_icon_outline"
         document.getElementsByClassName(click_id)[0].innerText= parseInt(document.getElementsByClassName(click_id)[0].innerText)  - 1 ;        
       }
     }
+    function love(click_id){
+    	let love_cnt = parseInt(document.getElementsByClassName(click_id)[0].innerText);
+    	let mb = document.getElementById("actor_id").innerHTML;
+  		$.ajax({
+			url: "love.do",
+			type: "get",
+			data : {
+				"love_cnt" : love_cnt,
+				"sns_seq" : click_id,
+				"mb" : mb
+			},
+			success : function(res){
+				<%mb_likes = dto.getSns_likes();%>
+				<%mb_seq = mb_likes.split(",");%>
+			},
+			error : function() {
+				alert("요청실패")
+			}
+  		});
+  	}
    </script>
 	<script type="text/javascript">
 	var mb_id = document.getElementById("actor_id").innerHTML;
@@ -298,7 +325,6 @@ for (int i = 0; i < post_info.size(); i++) {
 	var cnt = <%=cnt%>
 	console.log(cnt);
 	
-
 	let loadData = function(){
 		$.ajax({
 		url : 'SnsService2',
@@ -375,7 +401,6 @@ for (int i = 0; i < post_info.size(); i++) {
   </script>
 	<script type="text/javascript">
   	function search_post(){
-			
 			$.ajax({
 				url: "search_post.do",
 				type: "get",
@@ -388,10 +413,10 @@ for (int i = 0; i < post_info.size(); i++) {
 					console.log(res[0]["mb_id"]);
 					console.log(res.length)
 					$('.user_feedbox').html('');
-					$('#for_moon').html('');
+					$('#delete_div').html('');
 					let div = "";
 					for ( let i = 0; i < res.length; i++){
-						div = `<div class="top">
+						div += `<div class="top">
 							<div class="user_container">
 							<div class="profile_img">
 								<img src="imgs/thumb.jpeg" alt="프로필이미지">
@@ -419,16 +444,19 @@ for (int i = 0; i < post_info.size(); i++) {
 						</div>
 					</div>`;
 					}
-				$('.user_feedbox').append(div);
+					console.log(div);
+				$('#delete_div').append(div);
 				<%k = 10; %>
-				let k = <%=k%>;
+				cnt = res.length;
 				console.log(<%=k%>);
+				sc=true;
 				},
 				error : function(){
 					alert("요청 실패!");
 				}
 			});
 		}
+  	
   
   </script>
 </body>
