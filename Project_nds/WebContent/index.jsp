@@ -82,10 +82,6 @@ body {
 }
 
 #reg_btn {
-
-   margin-left: 90%;
-   margin-bottom: 10px;
-
 	background-color: skyblue;
 	border: none;
 	color: #ffffff;
@@ -138,8 +134,6 @@ String d = dto.getPw();
 String e = dto.getTel();
 String f = dto.getSys();
 String g = dto.getAd();
-
-System.out.print("여기까지임?:"+mb_likes);
 %>
 
 <body>
@@ -151,162 +145,6 @@ System.out.print("여기까지임?:"+mb_likes);
 	<section id="container">
 		<header id="header">
 			<section class="inner">
-
-
-            <h1 class="logo">
-               <a href="index.html">
-                  <div class="sprite_insta_icon"></div>
-                  <div class="sprite_write_logo"></div>
-               </a>
-            </h1>
-
-            <div class="search_box">
-               <input type="text" placeholder="검색" id="search-field">
-
-               <div class="fake_field">
-                  <span class="sprite_small_search_icon"></span> <span>검색</span>
-               </div>
-            </div>
-
-            <div class="right_icons">
-               <a href="new_post.html">
-                  <div class="sprite_camera_icon"></div>
-               </a> <a href="login.html">
-                  <div class="sprite_compass_icon"></div>
-               </a> <a href="follow.html">
-                  <div class="sprite_heart_icon_outline"></div>
-               </a> <a href="profile.html">
-                  <div class="sprite_user_icon_outline"></div>
-               </a>
-            </div>
-
-
-         </section>
-      </header>
-      <section id="main_container">
-         <div id="inner">
-            <div class="contents_box">
-               <article class="contents">
-                  <header class="top">
-                     <div class="user_container">
-                        <div class="profile_img">
-                           <img src="imgs/thumb.jpeg" alt="프로필이미지">
-                        </div>
-                        <div class="user_name">
-                           <div class="nick_name m_text"><%=dto.getId() %></div>
-                        </div>
-                     </div>
-                  </header>
-                  <textarea placeholder="지금 무슨생각을 하고 계신가요?"> </textarea>
-                  <div>
-                     <button type="submit" id=reg_btn Onclick="send_db()">등록</button>
-                  </div>
-                  <%
-                     for (int i = 0; i < 10; i++) {
-                     hash = post_info.get(cnt).getHash_tag();
-                     mbid = post_info.get(cnt).getMb_id();
-                     comment = post_info.get(cnt).getSns_content();
-                     like_count = post_info.get(cnt).getSns_likes();
-                     j_id = post_info.get(cnt).getSns_seq();
-                     span_id = span_id + 1;
-                  %>
-                  <div class="user_feedbox">
-                     <div class="top">
-                        <div class="user_container">
-                           <div class="profile_img">
-                              <img src="imgs/thumb.jpeg" alt="프로필이미지">
-                           </div>
-                           <div class="user_name">
-                              <div class="nick_name m_text" id="outer"><%=mbid%></div>
-                           </div>
-                        </div>
-                        <div class="heart_btn" id="outer">
-                           <div class="sprite_heart_icon_outline" id=<%=j_id%> name="39"
-                              data-name="heartbeat"
-                              onClick="like_click(<%=like_count%>,this.id)"></div>
-                        </div>
-                        <div>
-                           <span class="<%=j_id%>"><%=like_count%></span>
-                        </div>
-                     </div>
-                     <div id="user_feed"><%=comment%></div>
-                     <div class="comment_container">
-                        <div class="comment" id="comment-list-ajax-post37">
-                           <div class="comment-detail">
-                              <div class="nick_name m_text">박경섭</div>
-                              <div class="user_juno">강아지가 너무 귀여워요~!</div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <%
-                     cnt = cnt - 1;
-                  %>
-                  <%
-                     }
-                  %>
-
-
-   <% %> 
-   
-                  <script>
-
-   var cnt = 0;
-    window.onscroll = function (e) {       
-      // 브라우저 표시 높이 + 스크롤 Y이동량이 실제 높이보다 크면 함수 작동
-      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-        setTimeout(function () { 
-          var addComment = document.createElement("div");
-          addComment.classList.add("user_feedbox")
-          addComment.innerHTML = <div class="top">
-              <div class="user_container">
-                <div class="profile_img">
-                  <img src="imgs/thumb.jpeg" alt="프로필이미지">
-                </div>
-                <div class="user_name">
-                  <div class="nick_name m_text" id="outer">  arr[cnt] </div>
-                </div>
-              </div>
-              <div class="heart_btn" id="outer">
-            <div class="sprite_heart_icon_outline" id=<%=j_id%> name="39"
-               data-name="heartbeat"
-               onClick="like_click(<%=like_count%>,this.id)"></div>
-         </div>
-         <div>
-            <span class="<%=j_id%>"><%=like_count%></span>
-         </div>
-      </div>
-      <div id="user_feed"><%=comment%></div>
-      <div class="comment_container">
-         <div class="comment" id="comment-list-ajax-post37">
-            <div class="comment-detail">
-               <div class="nick_name m_text">박경섭</div>
-               <div class="user_juno">강아지가 너무 귀여워요~!</div>
-            </div>
-         </div>
-      </div>
-   </div>`
-            
-            
-          document.querySelector('article').appendChild(addComment);
-          console.log(document.querySelector('article'));
-          
-        }, 300)
-        
-      }
-      // db result set = null commnet = " 페이지의 끝입니다 "
-    }
-    cnt--;
-  </script>
-            </div>
-            </article>
-         </div>
-         </div>
-      </section>
-   </section>
-   <h1></h1>
-   
-   <script type="text/javascript">
 
 				<h1 class="logo">
 					<a href="SnsService">
@@ -423,9 +261,8 @@ System.out.print("여기까지임?:"+mb_likes);
 
 
 	<script type="text/javascript">
->>>>>>> branch 'master' of https://github.com/2021-SMHRD-IITP-Bigdata-6/Project_nds.git
     function like_click(yn,click_id){
-       console.log(yn)
+    	console.log(yn)
       if(yn == document.getElementsByClassName(click_id)[0].innerText) {
 /*         document.getElementById(click_id).style.background = "url('imgs/background01.png')";
         document.getElementById(click_id).style.backgroundPositionX = "-26px";
@@ -452,8 +289,7 @@ System.out.print("여기까지임?:"+mb_likes);
 				"mb" : mb
 			},
 			success : function(res){
-				<%mb_likes = dto.getSns_likes();%>
-				<%mb_seq = mb_likes.split(",");%>
+				console.log(res)
 			},
 			error : function() {
 				alert("요청실패")
@@ -461,12 +297,6 @@ System.out.print("여기까지임?:"+mb_likes);
   		});
   	}
    </script>
-
-   <script type="text/javascript">
-   
-   
-   </script>
-
 	<script type="text/javascript">
 	var mb_id = document.getElementById("actor_id").innerHTML;
    	function sum(){
@@ -628,6 +458,5 @@ System.out.print("여기까지임?:"+mb_likes);
   	
   
   </script>
->>>>>>> branch 'master' of https://github.com/2021-SMHRD-IITP-Bigdata-6/Project_nds.git
 </body>
 </html>
