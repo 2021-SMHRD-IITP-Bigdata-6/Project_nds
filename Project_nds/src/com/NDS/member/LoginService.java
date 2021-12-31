@@ -14,10 +14,12 @@ import com.memberDTO.memberDTO;
 public class LoginService implements command{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		request.setCharacterEncoding("utf-8");
-		
-		String id = request.getParameter("mb_id");
-		String pw = request.getParameter("mb_pw");
-		
+		String id = "";
+		id = request.getParameter("mb_id");
+		String pw = "";
+		pw = request.getParameter("mb_pw");
+		System.out.println("id : " +id);
+		System.out.println("pw : " +pw);
 		memberDAO dao = new memberDAO();
 		
 		memberDTO dto = new memberDTO(id, pw);

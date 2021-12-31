@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.NDS.member.JoinService;
 import com.NDS.member.LoginService;
@@ -42,12 +44,58 @@ public class FrontController extends HttpServlet {
 		if (command.equals("LoginCon.do")) {
 
 			com = new LoginService();
-			nextpage = com.execute(request, response);
+			com.execute(request, response);
+//			request.setCharacterEncoding("utf-8");
+//			String id = "";
+//			id = request.getParameter("mb_id");
+//			String pw = "";
+//			pw = request.getParameter("mb_pw");
+//			System.out.println("id : " +id);
+//			System.out.println("pw : " +pw);
+//			memberDAO dao = new memberDAO();
+//			
+//			memberDTO dto = new memberDTO(id, pw);
+//			
+//			memberDTO dto1 = dao.login(dto);
+//
+//			
+//			if (dto1 != null) {
+//				HttpSession session = request.getSession();
+//				session.setAttribute("dto", dto1);
+//				nextpage ="SnsService";
+//			} else {
+//				nextpage = "LoginFalse.jsp";
+//			}
 
 		} else if (command.equals("JoinCon.do")) {
 
 			com = new JoinService();
 			nextpage = com.execute(request, response);
+//			request.setCharacterEncoding("utf-8");
+//			
+//			String id = request.getParameter("mb_id");
+//			String pw = request.getParameter("mb_pw");
+//			String nickname = request.getParameter("mb_nick");
+//			String tel = request.getParameter("mb_tel");
+//			String part = request.getParameter("mb_part");
+//			// 1.memberDAO에 해당하는 기능 메소드로 값 보내주기(매게변수)
+//			memberDTO dto = new memberDTO(id, pw, nickname,tel, part);
+//			memberDAO dao = new memberDAO();
+//			int cnt = dao.join(dto);
+//			System.out.println("회원가입하려는 id:" +id);
+//			System.out.println("회원가입하려는 pw:" +pw);
+			// 2. cnt값 리턴해주기
+//			if (cnt > 0) {
+//				// JoinCon 에서 joinSuccess.jsp로 값을 보낼 수 있는 두가지 방법
+//				// 1.세션 활용
+//				// 2.QueryString활용
+//				request.setAttribute("dto", dto);
+//				nextpage = "login.jsp";
+//				RequestDispatcher dis = request.getRequestDispatcher(nextpage);
+//				dis.forward(request, response);
+//			} else {
+//
+//			}
 
 		} else if (command.equals("LogoutCon.do")) {
 

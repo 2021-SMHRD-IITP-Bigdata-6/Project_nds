@@ -40,7 +40,7 @@ boolean login_check = true;
 if(dto==null){
    login_check = false;
 }else if(dto != null){
-	session.removeAttribute("dto");
+   session.removeAttribute("dto");
 }
 %>
    
@@ -52,13 +52,13 @@ if(dto==null){
       #container{
          
          border: 0;
-          padding: 0;
+         padding: 0;
          height : 100vh;
          background-image : url('https://t1.daumcdn.net/blogfile/fs7/34_blog_2007_08_25_21_50_46d0253424ddd?x-content-disposition=inline&filename=0.jpg');
          background-repeat : no-repeat;
          background-size : cover;
          min-height: 100%;
-          background-position: center;
+         background-position: center;
             
          
       }
@@ -108,7 +108,6 @@ if(dto==null){
 
                 <h1 class="sprite_insta_big_logo title"></h1>
 
-                <form action="LoginCon.do" method="post">
                     <p class="login_user_mb_id">
                         <label for="user_mb_id">사용자명:</label>
                         <input type="text" name="mb_id">
@@ -119,9 +118,8 @@ if(dto==null){
                         <input type="password" name="mb_pw">
                     </p>
 
-                    <input type="submit" id="submit_btn" value="로그인" class="submit_btn">
-                </form>
-                <a href="joinpage.jsp"> <input type="submit" id="submit_btn" value="회원가입" class="submit_btn"></a>
+                    <input type="submit" id="submit_btn" value="로그인" class="submit_btn" onClick="Login()">
+                <a href="joinpage.jsp"> <input type="submit" id="submit_btn" value="회원가입" class="submit_btn" ></a>
             </div>
 
           </div>
@@ -138,5 +136,26 @@ if(dto==null){
                    }
                 });
              </script>
+             <script type="text/javascript">
+             function Login(){
+                 $.ajax({
+                    url : "LoginCon.do",
+                    type : "post",
+                    data: {
+                       mb_id : $('input[name = "mb_id"]').val(),
+                       mb_pw : $('input[name = "mb_pw"]').val()
+                    },
+                    success : function() {
+                       console.log("로그인 성공");
+                       location.replace("SnsService")
+                    },
+                    error : function () {
+                        alert("요청실패!");
+                    }
+                    
+                 });
+                 }
+             </script>
+             
 </body>
 </html>

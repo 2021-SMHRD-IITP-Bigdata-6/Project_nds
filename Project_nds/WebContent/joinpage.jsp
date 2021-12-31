@@ -85,7 +85,7 @@
 
 					<h1 class="sprite_insta_big_logo title"></h1>
 
-					<form action="JoinCon.do" method="post">
+			
 						<p class="join_user_mb_id">
 							<label for="user_mb_id">사용자명:</label> <input type="text"
 								name="mb_id" id="Join_ID">
@@ -95,23 +95,23 @@
 
 						<p class="join_user_mb_pw">
 							<label for="user_mb_pw">비밀번호:</label> <input type="password"
-								name="mb_pw">
+								name="mb_pw" id="Join_PW">
 						</p>
 						<p class="join_user_mb_nick">
 							<label for="user_mb_nick">닉네임:</label> <input type="text"
-								name="mb_nick">
+								name="mb_nick" id="Join_Nick">
 						</p>
 						<p class="join_user_mb_tel">
 							<label for="user_mb_tel">전화번호:</label> <input type="text"
-								name="mb_tel">
+								name="mb_tel" id="Join_TEL">
 						</p>
 						<label for="user_mb_part">구분 :</label>
 						<label>상담사 <input type="radio" value="0" name='mb_part'>
 						</label> 
 						<label> 일반회원 <input type="radio" value="1" name='mb_part' checked="checked">
 						</label>
-						 <input type="submit" id="submit_btn" value="회원가입" class="submit_btn" >
-					</form>
+						 <input type="submit" id="submit_btn" value="회원가입" class="submit_btn" onClick="join_form()" >
+					
 
 				</div>
 
@@ -141,6 +141,29 @@
 						else{
 							$('#result').html("사용가능한 아이디 입니다.").css("color","green");
 						}
+					},
+					error : function () {
+					 	alert("요청실패!");
+					}
+					
+				});
+			}
+			function join_form(){
+				$.ajax({
+					url : "JoinCon.do",
+					type : "post",
+					data: {
+						"mb_id" : $('#Join_ID').val(),
+						"mb_pw" : $('#Join_PW').val(),
+						"mb_nick" : $('#Join_Nick').val(),
+						"mb_tel" : $('#Join_TEL').val(),
+						"mb_part" : $('input[name = mb_part]').val(),
+					},
+					success : function() {
+						console.log("회원가입 성공");
+						location.reload();
+						location.replace("login.jsp")
+	
 					},
 					error : function () {
 					 	alert("요청실패!");

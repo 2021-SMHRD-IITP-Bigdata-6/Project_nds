@@ -131,7 +131,8 @@ public class memberDAO {
 			psmt.setString(1, id);
 
 			rs = psmt.executeQuery();
-
+			
+			
 			if (rs.next()) {
 				
 				String getid = rs.getString(1);

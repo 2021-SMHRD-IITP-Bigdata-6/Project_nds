@@ -19,24 +19,13 @@ public class JoinService implements command{
 		String nickname = request.getParameter("mb_nick");
 		String tel = request.getParameter("mb_tel");
 		String part = request.getParameter("mb_part");
-		String nextpage = "";
 		// 1.memberDAO에 해당하는 기능 메소드로 값 보내주기(매게변수)
 		memberDTO dto = new memberDTO(id, pw, nickname,tel, part);
 		memberDAO dao = new memberDAO();
 		int cnt = dao.join(dto);
-		// 2. cnt값 리턴해주기
-		if (cnt > 0) {
-			// JoinCon 에서 joinSuccess.jsp로 값을 보낼 수 있는 두가지 방법
-			// 1.세션 활용
-			// 2.QueryString활용
-			request.setAttribute("dto", dto);
-			nextpage = "login.jsp";
-			RequestDispatcher dis = request.getRequestDispatcher(nextpage);
-			dis.forward(request, response);
-		} else {
-
-		}
+		System.out.println("회원가입하려는 id:" +id);
+		System.out.println("회원가입하려는 pw:" +pw);
 		
-		return nextpage;
+		return null;
 	} 
 }
