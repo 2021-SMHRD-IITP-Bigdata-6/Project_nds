@@ -120,7 +120,7 @@ body {
 HttpSession se = request.getSession();
 memberDTO dto = (memberDTO) se.getAttribute("dto");
 snsDAO dao = new snsDAO();
-
+se.setAttribute("dto", dto);
 %>
 <%
 ArrayList<snsDTO> post_info = (ArrayList<snsDTO>) request.getAttribute("post_info");
@@ -140,7 +140,6 @@ if (post_info.size() > 10){
 String mb_likes = dto.getSns_likes();
 String[] mb_seq = mb_likes.split(",");
 String a = dto.getId();
-String b = dto.getNickname();
 String c = dto.getPart();
 String d = dto.getPw();
 String e = dto.getTel();
@@ -149,6 +148,73 @@ String g = dto.getAd();
 %>
 
 <body id="show">
+<script>
+    function search_post(){
+    	 console.log("test");
+         $.ajax({
+            url: "search_post.do",
+            type: "get",
+            data : {
+               "search_post" : $('#search-field').val()
+            },
+            dataType:"json",
+            success : function(res) {
+               console.log(res);
+               console.log(res[0]["mb_id"]);
+               console.log(res.length)
+               $('.contents_box').html('');
+               let div = "";
+               for ( let i = 0; i < res.length; i++){
+                  div += `<article class="contents">
+    					<div class="top" style="width: 487px; height: 30px;">
+						<div class="user_container">
+							<div class="profile_img">
+								<img src="imgs/thumb.jpeg" alt="프로필이미지">
+							</div>
+							<div class="user_name">
+								<div class="nick_name m_text" id="actor_id" >`+res[i].mb_id+`</div>
+							</div>
+						</div>
+					</div>
+					<div class="middle" style="width: 457px;">
+						<img src="Upload/`+res[i].hash_tag+`" width="500" height="250">
+					</div>
+					<section>
+					<div class="like_top">
+						<div class="sprite_heart_icon_outline" id=`+res[i].sns_seq+` name="39"
+							data-name="heartbeat"
+							onClick="like_click(`+res[i].sns_likes+`,this.id); love(this.id); ">
+							<span class="`+res[i].sns_seq+`" style="float: left; padding-left: 30px">`+res[i].sns_likes+`</span>
+						</div>
+					</div>
+					</section> <section>
+					<div class="comment_container" style="padding-right: 10px; padding-left: 0px; padding-right: 0px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+						<div id="user_feed" style="line-height: 22px; letter-spacing: 1px; display: block; float: left; width: 407px; height: 200px; padding-bottom: 35px;">`+res[i].sns_content+`</div>
+						<div class="comment" id="comment-list-ajax-post37">
+						<div class="comment-detail">
+						<div class="heart_btn" id="outer">
+						</div>
+						<br>
+						<div class="nick_name m_text"></div>
+						<div class="user_juno">
+							<input type="text" id="b`+res[i].sns_seq+`" class="`+res[i].sns_seq+`">
+							<button type=submit onclick="sendCmCt(`+res[i].sns_seq+`)">작성</button>
+							<button type=submit onclick="loadCmct(`+res[i].sns_seq+`)">댓글보기</button>
+							<br>
+							<p class="a`+res[i].sns_seq+`"></p>
+						</div>`;
+               }
+            $('.contents_box').append(div);
+            sc=true;
+            },
+            error : function(){
+               alert("요청 실패!");
+            }
+         });
+      }
+     
+  
+  </script> 
 	<!-- <script type="text/javascript" src=js/jquery-3.6.0.min.js></script> -->
 	<script>
     let like_boolean = 0;
@@ -177,7 +243,7 @@ String g = dto.getAd();
 		<a href="mb_part1Cn.jsp" class="cicon"><div class="sprite_phone_icon"></div></a>
 		<a href="survey_connect.jsp" class="cicon"><div class="sprite_heart_icon_outline"></div></a> 
 		<a href="KaKaoMap2.jsp" class="cicon"><div class="sprite_map_icon"></div></a> 
-		<a href="newpost.jsp" class="cicon"><div class="sprite_user_icon_outline"></div></a>
+		<a href="newpost.jsp" class="cicon"><div class="sprite_user_icon_outline" onClick=""></div></a>
 	</div>
 	</section> 
 	</header> 
@@ -221,10 +287,8 @@ String g = dto.getAd();
 					</div>
 					</section> <section>
 					<div class="comment_container"  style="padding-right: 10px; padding-left: 0px; padding-right: 0px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
-						<div class="nick_name m_text" style="padding-bottom: 80px; width: 100px; height:150px;"><%=dto.getId()%></div>
 						<div id="user_feed" style="line-height: 22px; letter-spacing: 1px; display: block; float: left; width: 407px; height: 200px; padding-bottom: 35px;"><%=comment%></div>
-						<div class="comment" id="comment-list-ajax-post37">
-							<div class="comment-detail">
+						<div class="comment-detail">
 								<div class="heart_btn" id="outer">
 									<%
                                        if (Arrays.asList(mb_seq).contains(j_id) == true) {
@@ -253,6 +317,8 @@ String g = dto.getAd();
 									<p class="a<%=j_id%>"></p>
 								</div>
 							</div>
+						<div class="comment" id="comment-list-ajax-post37">
+							
 						</div>
 					</div>
 					</section>
@@ -315,7 +381,6 @@ String g = dto.getAd();
   					</div>
   					</section> <section>
   					<div class="comment_container" style="padding-right: 10px; padding-left: 0px; padding-right: 0px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
-  						<div class="nick_name m_text" style="padding-bottom: 80px; width: 100px; height:150px;"><%=dto.getId()%></div>
   						<div id="user_feed" style="line-height: 22px; letter-spacing: 1px; display: block; float: left; width: 407px; height: 200px; padding-bottom: 35px;">`+comment+`</div>
   						<div class="comment" id="comment-list-ajax-post37">
   						<div class="comment-detail">
@@ -362,10 +427,13 @@ String g = dto.getAd();
   
 
    window.onscroll = function(){
+/*     	var limit = Math.max( document.body.scrollHeight, document.body.offsetHeight, 
+                document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight );
+     */
 		console.log((window.innerHeight + window.scrollY));
 		console.log(document.body.offsetHeight);
+	   //if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
 	   if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-	   
 		   loadData();
 	     
 	   }
@@ -418,74 +486,8 @@ String g = dto.getAd();
 
    
    </script> <script type="text/javascript">
-    window.onload = function search_post(){
-    	 console.log("test");
-         $.ajax({
-            url: "search_post.do",
-            type: "get",
-            data : {
-               "search_post" : $('#search-field').val()
-            },
-            dataType:"json",
-            success : function(res) {
-               console.log(res);
-               console.log(res[0]["mb_id"]);
-               console.log(res.length)
-               $('.user_feedbox').html('');
-               $('#delete_div').html('');
-               let div = "";
-               for ( let i = 0; i < res.length; i++){
-                  div += `<div class="top">
-                     <div class="user_container">
-                     <div class="profile_img">
-                        <img src="imgs/thumb.jpeg" alt="프로필이미지">
-                     </div>
-                     <div class="user_name">
-                        <div class="nick_name m_text" id="outer">`+res[i].mb_id+`</div>
-                     </div>
-                  </div>
-                  <div class="heart_btn" id="outer">
-                     <div class="sprite_heart_icon_outline" id="`+res[i].sns_seq+`"name="39"
-                        data-name="heartbeat"
-                        onClick="like_click(`+res[i].sns_likes+`,this.id)"></div>
-                  </div>
-                  <div>
-                     <span class="`+res[i].sns_seq+`">`+res[i].sns_likes+`</span>
-                  </div>
-               </div>
-               <div id="user_feed">`+res[i].sns_content+`</div>
-               <section class="comment_container">
-                  <div class="comment" id="comment-list-ajax-post37">
-                     <div class="comment-detail">
-                        <div class="nick_name m_text"><%=dto.getId()%></div>
-                    <div class="user_juno">
-                       <input type="text" id=b`+ j_id+` class=`+ j_id+`>
-                       <button type=submit onclick=sendCmCt(`+j_id+`)>작성</button>
-                       <button type=submit onclick=loadCmct(`+j_id+`)>댓글보기</button>
-                       <br>
-                       <p class=a`+j_id+`></p>
-                    </div>
-                     </div>
-                  </div>
-               </section>;
-               }
-               console.log(div);
-            $('#delete_div').append(div);
-            <%k = 10;%>
-            cnt = res.length;
-            console.log(<%=k%>);
-            sc=true;
-            },
-            error : function(){
-               alert("요청 실패!");
-            }
-         });
-      }
-     
-  
-  </script> <script type="text/javascript">
    function sendCmCt(seq) {
-      let mbid =document.getElementById("actor_id").innerHTML;
+      let mbid = "<%=dto.getId()%>";
       let jid = seq.toString();
       $.ajax({
          url : "comment.do",
@@ -497,7 +499,7 @@ String g = dto.getAd();
          },
          success : function(cm_ct) {
             
-            if(mb_id != null){
+            if(mbid != null){
                $('.a'+jid).after(cm_ct+"<br>");
                console.log("성공");
             }
@@ -538,6 +540,42 @@ String g = dto.getAd();
          
       });
    }
+   
+   function loadCmct(seq) {
+       let mbid =document.getElementById("cm_mb_id").innerHTML;
+      console.log(seq)
+      $.ajax({
+         url : "loadcomment.do",
+         type : "get",
+         dataType : "json",
+         data: {
+            "lcm_sns_seq" : seq,
+         },
+         success : function(res) {
+            console.log(res);
+              $('.a'+seq).html('');
+            if(res != null){
+               for (let i = 0; i < res.length; i++) {
+                  if(res[i].lmb_id == mbid){
+                  $('.a'+seq).append(res[i].lmb_id +" : "+res[i].lcm_ct + "<a href='DeleteCmCon.do?delete_CmCt_seq="+res[i].cm_sns_seq+"'>삭제 </a><br>");
+                  }else{
+                     $('.a'+seq).append(res[i].lmb_id +" : "+res[i].lcm_ct+"<br>");
+                  }
+                  
+                  }
+            }
+            else{
+               $('.a'+seq).html("작성된 댓글이 없습니다");
+            }
+         },
+         error : function () {
+             alert("요청실패!");
+         }
+         
+      });
+   }
+   
+   
    </script>
 </body>
 </html>

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
+import com.NDS.member.DeleteCmCon;
 import com.NDS.member.JoinService;
 import com.NDS.member.LoginService;
 import com.NDS.member.LogoutService;
@@ -172,7 +173,13 @@ public class FrontController extends HttpServlet {
 			
 			PrintWriter out = response.getWriter();
 			out.print(mb);
-		}
+		} else if (command.equals("DeleteCmCon.do")) {
+
+		      com = new DeleteCmCon();
+		      com.execute(request, response);
+		      
+		   }
+
 		
 		if(nextpage !=null) {
 		response.sendRedirect(nextpage);

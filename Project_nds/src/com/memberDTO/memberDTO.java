@@ -4,17 +4,15 @@ public class memberDTO {
 
 	String id;
 	String pw;
-	String nickname;
 	String tel;
 	String part;
 	String sys;
 	String ad;
-	public memberDTO(String id, String pw, String nickname, String tel, String part, String sys, String ad,
+	public memberDTO(String id, String pw, String tel, String part, String sys, String ad,
 			String sns_likes) {
 		super();
 		this.id = id;
 		this.pw = pw;
-		this.nickname = nickname;
 		this.tel = tel;
 		this.part = part;
 		this.sys = sys;
@@ -41,11 +39,10 @@ public class memberDTO {
 		this.ad = ad;
 	}
 
-	public memberDTO(String id, String pw, String nickname, String tel, String part, String sns_likes) {
+	public memberDTO(String id, String pw, String tel, String part, String sns_likes) {
 		super();
 		this.id = id;
 		this.pw = pw;
-		this.nickname = nickname;
 		this.tel = tel;
 		this.part = part;
 		this.sns_likes = sns_likes;
@@ -64,19 +61,17 @@ public class memberDTO {
 		this.pw = pw;
 	}
 	
-	public memberDTO(String id, String nickname, String tel, String part) {
+	public memberDTO(String id, String tel, String part) {
 		this.id = id;
-		this.nickname = nickname;
 		this.tel = tel;
 		this.part = part;
 		
 	}
 
 
-	public memberDTO(String id, String pw, String nickname, String tel, String part) {
+	public memberDTO(String id, String pw, String tel, String part) {
 		this.id = id;
 		this.pw = pw;
-		this.nickname = nickname;
 		this.tel = tel;
 		this.part = part;
 	}
@@ -99,13 +94,6 @@ public class memberDTO {
 		this.pw = pw;
 	}
 
-	public String getNickname() {
-		return nickname;
-	}
-
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
 
 	public String getTel() {
 		return tel;

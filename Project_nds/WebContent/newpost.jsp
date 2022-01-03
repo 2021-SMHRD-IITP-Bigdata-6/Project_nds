@@ -138,7 +138,7 @@ body {
 
 </head>
 <%
-	HttpSession se = request.getSession();
+HttpSession se = request.getSession();
 memberDTO dto = (memberDTO) se.getAttribute("dto");
 snsDAO dao = new snsDAO();
 %>
@@ -165,13 +165,11 @@ snsDAO dao = new snsDAO();
 	</div>
 	<div></div>
 	<div class="right_icons" style="width: 10px">
-		<a href="login.jsp" class="cicon"><div class="sprite_home_icon"></div></a>
-		<a href="login.jsp" class="cicon"><div class="sprite_phone_icon"></div></a>
-		<a href="survey.jsp" class="cicon"><div
-				class="sprite_heart_icon_outline"></div></a> <a href="KaKaoMap2.jsp"
-			class="cicon"><div class="sprite_map_icon"></div></a> <a
-			href="profile.jsp" class="cicon"><div
-				class="sprite_user_icon_outline"></div></a>
+		<a href="Start.jsp" class="cicon"><div class="sprite_home_icon"></div></a>
+		<a href="mb_part1Cn.jsp" class="cicon"><div class="sprite_phone_icon"></div></a>
+		<a href="survey_connect.jsp" class="cicon"><div class="sprite_heart_icon_outline"></div></a> 
+		<a href="KaKaoMap2.jsp" class="cicon"><div class="sprite_map_icon"></div></a> 
+		<a href="newpost.jsp" class="cicon"><div class="sprite_user_icon_outline" onClick=""></div></a>
 	</div>
 
 
@@ -185,7 +183,7 @@ snsDAO dao = new snsDAO();
 					<img src="imgs/thumb.jpeg" alt="프로필이미지">
 				</div>
 				<div class="user_name">
-					<div class="nick_name m_text" id="actor_id">이동현</div>
+					<div class="nick_name m_text" id="actor_id"><%=dto.getId() %></div>
 				</div>
 
 			</div>

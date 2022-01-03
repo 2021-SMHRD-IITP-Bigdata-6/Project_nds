@@ -679,9 +679,7 @@ if(dto==null){
                   <button type="button" id ="Check" class="submit_btn"onclick="IdCheck()">중복체크</button>
 								  <p id="result"> </p>
                   <input type="password" name="mb_pw" id="Join_PW" placeholder="Password" />
-                  <input type="password" name="mb_nick" id="Join_Nick" placeholder="Nick" />
-                  <input type="password" name="mb_tel" id="Join_TEL" placeholder="Tel" />
-                  <input type="password" placeholder="Nick" />
+                  <input type="text" name="mb_tel" id="Join_TEL" placeholder="Tel" />
 						      <label>상담사 <input type="radio" value="0" name='mb_part'>
 						      </label> 
 						      <label> 일반회원 <input type="radio" value="1" name='mb_part' checked="checked">
@@ -776,7 +774,6 @@ if(dto==null){
 					data: {
 						mb_id : $('#Join_ID').val(),
 						mb_pw : $('#Join_PW').val(),
-						mb_nick : $('#Join_Nick').val(),
 						mb_tel : $('#Join_TEL').val(),
 						mb_part : $('input[name = mb_part]').val()
 					},

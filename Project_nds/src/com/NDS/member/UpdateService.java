@@ -19,15 +19,13 @@ public class UpdateService implements command{
 			request.setCharacterEncoding("UTF-8");
 
 			String pw = request.getParameter("mb_pw");
-			String nick = request.getParameter("mb_nick");
 			String tel = request.getParameter("mb_tel");
 			String id = dto.getId();
 			memberDAO dao = new memberDAO();
 			
-			int cnt = dao.update(pw, nick, tel, id);
+			int cnt = dao.update(pw, tel, id);
 
 			if (cnt > 0) {
-				dto.setNickname(nick);
 				dto.setTel(tel);
 			} else {
 				
