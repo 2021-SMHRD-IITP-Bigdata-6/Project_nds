@@ -288,6 +288,7 @@ String g = dto.getAd();
 					</section> <section>
 					<div class="comment_container"  style="padding-right: 10px; padding-left: 0px; padding-right: 0px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
 						<div id="user_feed" style="line-height: 22px; letter-spacing: 1px; display: block; float: left; width: 407px; height: 200px; padding-bottom: 35px;"><%=comment%></div>
+						<div class="nick_name m_text" id="cm_mb_id" style="padding-bottom: 80px; width: 100px; height: 150px;"><%=dto.getId()%></div>
 						<div class="comment-detail">
 								<div class="heart_btn" id="outer">
 									<%
@@ -308,7 +309,7 @@ String g = dto.getAd();
 
 
 								<br>
-								<div class="nick_name m_text"></div>
+								<div class="nick_name m_text" id="cm_mb_id"></div>
 								<div class="user_juno">
 									<input type="text" id="b<%=j_id%>" class="<%=j_id%>">
 									<button type=submit onclick="sendCmCt(<%=j_id%>)">작성</button>

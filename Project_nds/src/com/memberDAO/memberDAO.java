@@ -214,9 +214,11 @@ public class memberDAO {
 			rs = psmt.executeQuery();
 
 			while (rs.next() == true) {
+				String cm_sns_seq = rs.getString(1);
 				String lcm_ct = rs.getString(3);
 				String lmb_id = rs.getString(5);
 				commentDTO cdto = new commentDTO(lcm_ct, lmb_id);
+				cdto.setCm_sns_seq(cm_sns_seq);
 				arr.add(cdto);
 			}
 
