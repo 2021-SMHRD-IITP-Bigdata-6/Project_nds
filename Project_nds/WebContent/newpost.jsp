@@ -30,10 +30,11 @@
 
 textarea {
 	outline: none;
-	width: 97.8%;
+	width: 56%;
 	height: 6.25em;
 	border: ridge;
 	margin-top: 2px;
+	margin-left: 21%;
 }
 
 .heart_btn {
@@ -88,7 +89,7 @@ body {
 	font-weight: 600;
 	padding: 4px 14px;
 	font-size: 12px;
-	margin-left: 350px;
+	margin-left: 309px;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	border-radius: 15px
@@ -102,6 +103,33 @@ body {
 .btn_upload {
 	
 }
+
+.middle > img {
+	witdh: 500px;
+	height :500%;
+	object-fit:cover;
+	object-position:;
+	
+}
+
+.middle {
+	width:380px;
+	height:97px;
+	overflow:hidden;
+	margin:0 auto;
+	text-align: center;
+}
+
+.contents .middle {
+	width:50%;
+
+}
+
+#file {
+	margin-left:21%;
+	margin-top: 1%;
+}
+
 </style>
 <link rel="stylesheet" href="css/reset.css">
 <link rel="stylesheet" href="css/common.css">
@@ -151,7 +179,7 @@ snsDAO dao = new snsDAO();
 	<div id="inner">
 		<div class="contents_box">
 			<article class="contents"> <header class="top"
-				style="width: 487px; height: 30px;">
+				style="width: 376px; height: 30px; margin-left:22%;">
 			<div class="user_container">
 				<div class="profile_img">
 					<img src="imgs/thumb.jpeg" alt="프로필이미지">
@@ -162,11 +190,9 @@ snsDAO dao = new snsDAO();
 
 			</div>
 
-			</header> <header class="middle">
-			<div class="user_container"></div>
-			<div class="profile_img"></div>
-
-			</header>
+			</header> 
+			<div class="middle">
+			</div>
 			<form action="UploadService" method="post"
 				enctype="multipart/form-data">
 				<input type="hidden" name="mb_id" value="이동현"
@@ -174,8 +200,8 @@ snsDAO dao = new snsDAO();
 					readonly>
 				<textarea name="sns_content" placeholder="지금 무슨생각을 하고 계신가요?"> </textarea>
 				<input accept="image/*" type="file" value="파일 선택" id="file"
-					onchange="setThumbnail(event);" /> <input type="submit" id=reg_btn
-					value="게시" />
+					name="file" onchange="setThumbnail(event);" /> <input
+					type="submit" id=reg_btn value="게시" />
 			</form>
 		</div>
 </body>
@@ -185,7 +211,7 @@ snsDAO dao = new snsDAO();
 		reader.onload = function(event) {
 			var img = document.createElement("img");
 			img.setAttribute("src", event.target.result);
-			document.querySelector("div.user_container").appendChild(img);
+			document.querySelector("div.middle").appendChild(img);
 		};
 
 		reader.readAsDataURL(event.target.files[0]);

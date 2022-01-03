@@ -179,7 +179,7 @@ body{
 
 .contents .middle{
    margin-top: 2px;
-   width: 90.5%;
+   width: 50%;
     display: flex;
     justify-content: space-between;
     align-items: center;

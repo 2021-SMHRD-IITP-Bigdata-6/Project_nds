@@ -271,7 +271,6 @@ body {
 }
 
 #main_container {
-    height: 100px;
     padding-top: 100px;
     display: flex;
     justify-content: center;

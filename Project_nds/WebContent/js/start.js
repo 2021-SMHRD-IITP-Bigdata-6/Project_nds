@@ -4,7 +4,7 @@ const result = document.querySelector("#result");
 const endPoint = 12;
 const select = [0,0,0,0,0,0,0,0,0,0,0,0];
 
-alert("호출")
+
 
 function calResult(){
     console.log(select);
