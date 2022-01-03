@@ -1,10 +1,11 @@
+<%@page import="com.memberDTO.memberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!doctype html>
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1" name="viewport">
-  <title>Easy Fullscreen HTML5 Background Video</title>
+  <title>NDStargram</title>
   <meta name="keywords" content="css3, html5, js, background video, fullscreen video">
   <meta name="description" content="Super easy to implement HTML5 fullscreen background video library in JavaScript.">
   		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -515,7 +516,9 @@ background text
          z-index: 2;
       }
 
-      .cont_forms_active_login>.cont_form_login {}
+      .cont_forms_active_login>.cont_form_login {
+      
+      }
 
       .cont_form_sign_up {
          position: absolute;
@@ -578,6 +581,17 @@ background text
   <script>try{Typekit.load({ async: true });}catch(e){}</script>
 </head>
 <body>
+<%
+memberDTO dto = null;
+HttpSession se = request.getSession(); %>
+<% dto = (memberDTO)se.getAttribute("dto");
+boolean login_check = true;
+if(dto==null){
+   login_check = false;
+}else if(dto != null){
+   session.removeAttribute("dto");
+}
+%>
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -634,7 +648,7 @@ background text
                   <div class="cont_ba_opcitiy">
                      <h2>LOGIN</h2>
                      <p></p>
-                     <button class="btn_login" onclick="cambiar_login(); onclick_forms();">LOGIN</button>
+                     <button class="btn_login" onclick="cambiar_login();">LOGIN</button>
                   </div>
                </div>
                <div class="col_md_sign_up">
@@ -654,9 +668,9 @@ background text
                <div class="cont_form_login">
                   <a href="#" onclick="ocultar_login_sign_up()"><i class="material-icons"></i></a>
                   <h2>LOGIN</h2>
-                  <input type="text" placeholder="Username" />
-                  <input type="password" placeholder="Password" />
-                  <button class="btn_login" onclick="cambiar_login(); onclick_forms()">LOGIN</button>
+                  <input name="mbl_id" type="text" placeholder="Username" />
+                  <input name="mbl_pw" type="password" placeholder="Password" />
+                  <button class="btn_login" onclick="cambiar_login(); Login();">LOGIN</button>
                </div>
                <div class="cont_form_sign_up">
                   <a href="#" onclick="ocultar_login_sign_up()"><i class="material-icons"></i></a>
@@ -672,7 +686,7 @@ background text
 						      </label> 
 						      <label> 일반회원 <input type="radio" value="1" name='mb_part' checked="checked">
 						      </label>
-                  <button type="submit" id="submit_btn" class="btn_sign_up" onclick="cambiar_sign_up(); join_form();">SIGN UP</button>
+                  <button type="submit" id="submit_btn" class="btn_sign_up" onclick="cambiar_login(); join_form();">SIGN UP</button>
                </div>
             </div>
          </div>
@@ -767,8 +781,8 @@ background text
 						mb_part : $('input[name = mb_part]').val()
 					},
 					success : function() {
+						cambiar_login();
 						console.log("회원가입 성공");
-						location.replace("login.jsp")
 	
 					},
 					error : function () {
@@ -778,5 +792,25 @@ background text
 				});
 			}
 			</script>
+             <script type="text/javascript">
+             function Login(){
+                 $.ajax({
+                    url : "LoginCon.do",
+                    type : "post",
+                    data: {
+                       mb_id : $('input[name = "mbl_id"]').val(),
+                       mb_pw : $('input[name = "mbl_pw"]').val()
+                    },
+                    success : function() {
+                       location.replace("SnsService")
+                    },
+                    error : function () {
+                        alert("요청실패!");
+                    }
+                    
+                 });
+                 }
+             </script>
+             
 </body>
 </html>

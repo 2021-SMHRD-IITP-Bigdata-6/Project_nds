@@ -16,6 +16,24 @@ public class snsDTO {
 		this.hash_tag = hash_tag;
 	}
 
+	public String getSns_date() {
+		return sns_date;
+	}
+
+	public void setSns_date(String sns_date) {
+		this.sns_date = sns_date;
+	}
+
+	public snsDTO(String sns_seq, String sns_content, String sns_date, int sns_likes, String mb_id, String hash_tag) {
+		super();
+		this.sns_seq = sns_seq;
+		this.sns_content = sns_content;
+		this.sns_date = sns_date;
+		this.sns_likes = sns_likes;
+		this.mb_id = mb_id;
+		this.hash_tag = hash_tag;
+	}
+
 	public String getSns_seq() {
 		return sns_seq;
 	}

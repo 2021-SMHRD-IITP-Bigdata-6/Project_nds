@@ -1,0 +1,16 @@
+#main{
+    
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#febbbb+0,fe9090+43,ff5c5c+100 */
+background: #febf01; /* Old browsers */
+background: -moz-linear-gradient(top, #febf01 0%, #febf01 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #febf01 0%,#febf01 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #febf01 0%,#febf01 100%);
+ 
+     width: 80%;
+     text-align: center;
+     border-radius: 20px;
+ }
+ 
+ p{
+     font-size: 20px;
+ }

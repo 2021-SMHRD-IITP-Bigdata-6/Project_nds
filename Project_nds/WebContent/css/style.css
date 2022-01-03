@@ -131,7 +131,7 @@ body{
 }
 
 #header .right_icons{
-    width: 132px;
+    
     display: flex;
     justify-content: space-between;
 }
@@ -161,19 +161,30 @@ body{
 
 
 .contents{
-    max-width: 614px;
-    border: 1px solid rgba(0,0,0,0.09);
+    max-width: 700px;
     border-radius: 3px;
     margin-bottom: 60px;
     background: white;
 }
 
 
-.contents .top{
+.top{
+    display: grid;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    border: ridge;
+    
+}
+
+.contents .middle{
+   margin-top: 2px;
+   width: 90.5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 200px 20px;
+    border: ridge;
 }
 
 
@@ -182,7 +193,7 @@ body{
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    overflow:hidden;
+    /* overflow:hidden; */
     margin-right: 10px;
 }
 
@@ -224,7 +235,7 @@ body{
 }
 
 .contents .img_section{
-    overflow:hidden;
+    /* overflow:hidden; */
 }
 
 .contents .img_section img{
@@ -265,9 +276,9 @@ body{
 
 .contents .comment_container{
     display:flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
-    padding: 5px 20px;
+    
 }
 .contents .comment_container .comment{
     display:flex;
@@ -276,7 +287,7 @@ body{
 }
 
 .contents .comment_container .comment-detail{
-    display: flex;
+    display: block;
 }
 
 .contents .comment_container .comment .nick_name{
@@ -343,7 +354,7 @@ body{
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    overflow:hidden;
+    /* overflow:hidden; */
     margin-right: 10px;
 }
 
@@ -416,8 +427,8 @@ body{
 
 .side_box .scroll_inner{
     height: 182px;
-    overflow-x: hidden;
-    overflow-y: auto;
+/*     overflow-x: hidden;
+    overflow-y: auto; */
     /*overflow:hidden auto;*/
 
 }
@@ -431,7 +442,7 @@ body{
     left: 50%;
     transform:translateX(-50%);
     top: 100px;
-    overflow:hidden;
+    /* overflow:hidden; */
     border: 1px solid rgba(0,0,0,0.09);
     border-radius: 3px;
 }
@@ -440,8 +451,8 @@ body{
 .hidden_menu .scroll_inner{
     height: 100px;
     width: auto;
-    overflow-x: auto;
-    overflow-y: hidden;
+/*     overflow-x: auto;
+    overflow-y: hidden; */
     display: flex;
     align-items: center;
     padding: 0 10px;
@@ -466,7 +477,7 @@ body{
     width: 56px;
     height: 56px;
     border-radius: 50%;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .hidden_menu .thumb_img img{
@@ -516,7 +527,6 @@ body{
 
 
 }
-
 
 
 

@@ -35,6 +35,25 @@ public class snsDAO {
 		}
 	}
 	
+	public void getclose() {
+
+		System.out.println("무조건 실행");
+		try {
+			if (rs != null) {
+				rs.close();
+			}
+			if (psmt != null) {
+				psmt.close();
+			}
+			if (conn != null) {
+				conn.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	
 	public ArrayList<snsDTO> sns() {
 		ArrayList<snsDTO> post = new ArrayList<snsDTO>(); 
 		try {
@@ -56,27 +75,32 @@ public class snsDAO {
 			}			
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			getclose();
 		}
 		return post;
 	}
 	
 	
-	public void feed(String mbid, String comment) {
+	public void feed(String mbid, String comment, String file) {
 		try {
 			getConn();
 			
-			String sql = "INSERT INTO tbl_sns values (default, ?, default, default, ?, '#19')";
+			String sql = "INSERT INTO tbl_sns values (default, ?, default, default, ?, ?)";
 
 			psmt = conn.prepareStatement(sql);
 			
 			psmt.setString(1, comment);
 			psmt.setString(2, mbid);
+			psmt.setString(3, file);
 			
 			cnt = psmt.executeUpdate();
 
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			getclose();
 		}
 	}
 	public ArrayList<snsDTO> search(String search_post) {
@@ -98,6 +122,8 @@ public class snsDAO {
 			}			
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			getclose();
 		}
 		return post;
 	}
@@ -133,8 +159,85 @@ public class snsDAO {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			getclose();
 		}
 		
 		return love;
+	}
+	
+	public int uploadFile(String sns_content, String mb_id, String file) {
+		try {
+			getConn();
+			String sql = "INSERT INTO tbl_sns values (default, ?, default, default, ?, ?)";
+
+			psmt = conn.prepareStatement(sql);
+			
+			psmt.setString(1, sns_content);
+			psmt.setString(2, mb_id);
+			psmt.setString(3, file);
+			
+			cnt = psmt.executeUpdate();
+			System.out.println("cnt : " + cnt);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			getclose();
+		}
+		return cnt;
+	}
+
+	public ArrayList<snsDTO> selectAll() {
+		ArrayList<snsDTO> post = new ArrayList<snsDTO>();
+		try {
+			getConn();
+			
+			String sql = "select * from tbl_sns order by sns_seq desc";
+
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				String get_seq = rs.getString(1);
+				String get_content = rs.getString(2);
+				int get_likes = rs.getInt(4);
+				String get_mbid = rs.getString(5);
+				String get_hash = rs.getString(6);
+				dto = new snsDTO(get_seq,get_content,get_likes,get_mbid,get_hash);
+				post.add(dto);
+			}			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			getclose();
+		}
+		
+	    return post;
+	}
+
+	public snsDTO SelectOne(int num) {
+		try {
+			getConn();
+			
+			String sql = "select * from tbl_sns order by sns_seq desc";
+
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				String get_seq = rs.getString(1);
+				String get_content = rs.getString(2);
+				int get_likes = rs.getInt(4);
+				String get_mbid = rs.getString(5);
+				String get_hash = rs.getString(6);
+				dto = new snsDTO(get_seq,get_content,get_likes,get_mbid,get_hash);
+			}			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			getclose();
+		}
+		return dto;
 	}
 }

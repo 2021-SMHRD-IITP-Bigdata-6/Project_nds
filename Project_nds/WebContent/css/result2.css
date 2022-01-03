@@ -1,0 +1,14 @@
+#result{
+    display: none;
+    background: whitesmoke(253, 253, 253, 0.965); /* Old browsers */
+    
+    text-align: center;
+    border-radius: 20px;
+}
+
+.resultname{
+    font-size: 20px;
+}
+.resultDesc{
+    font-size: 20px;
+ }

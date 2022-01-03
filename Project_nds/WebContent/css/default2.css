@@ -1,0 +1,10 @@
+body{
+ background: #ffaf4b; /* Old browsers */
+background: -moz-linear-gradient(top, #ffaf4b 0%, #ff920a 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #ffaf4b 0%,#ff920a 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #ffaf4b 0%,#ff920a 100%);
+ 
+}
+*{
+    font-family: 'Cute Font', cursive;
+}

@@ -5,12 +5,15 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.NDS.member.JoinService;
 import com.NDS.member.LoginService;
@@ -21,6 +24,8 @@ import com.google.gson.Gson;
 import com.inter.command;
 import com.memberDAO.memberDAO;
 import com.memberDTO.memberDTO;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.snsDAO.snsDAO;
 import com.snsDTO.snsDTO;
 
@@ -45,57 +50,12 @@ public class FrontController extends HttpServlet {
 
 			com = new LoginService();
 			com.execute(request, response);
-//			request.setCharacterEncoding("utf-8");
-//			String id = "";
-//			id = request.getParameter("mb_id");
-//			String pw = "";
-//			pw = request.getParameter("mb_pw");
-//			System.out.println("id : " +id);
-//			System.out.println("pw : " +pw);
-//			memberDAO dao = new memberDAO();
-//			
-//			memberDTO dto = new memberDTO(id, pw);
-//			
-//			memberDTO dto1 = dao.login(dto);
-//
-//			
-//			if (dto1 != null) {
-//				HttpSession session = request.getSession();
-//				session.setAttribute("dto", dto1);
-//				nextpage ="SnsService";
-//			} else {
-//				nextpage = "LoginFalse.jsp";
-//			}
+
 
 		} else if (command.equals("JoinCon.do")) {
 
 			com = new JoinService();
 			nextpage = com.execute(request, response);
-//			request.setCharacterEncoding("utf-8");
-//			
-//			String id = request.getParameter("mb_id");
-//			String pw = request.getParameter("mb_pw");
-//			String nickname = request.getParameter("mb_nick");
-//			String tel = request.getParameter("mb_tel");
-//			String part = request.getParameter("mb_part");
-//			// 1.memberDAO에 해당하는 기능 메소드로 값 보내주기(매게변수)
-//			memberDTO dto = new memberDTO(id, pw, nickname,tel, part);
-//			memberDAO dao = new memberDAO();
-//			int cnt = dao.join(dto);
-//			System.out.println("회원가입하려는 id:" +id);
-//			System.out.println("회원가입하려는 pw:" +pw);
-			// 2. cnt값 리턴해주기
-//			if (cnt > 0) {
-//				// JoinCon 에서 joinSuccess.jsp로 값을 보낼 수 있는 두가지 방법
-//				// 1.세션 활용
-//				// 2.QueryString활용
-//				request.setAttribute("dto", dto);
-//				nextpage = "login.jsp";
-//				RequestDispatcher dis = request.getRequestDispatcher(nextpage);
-//				dis.forward(request, response);
-//			} else {
-//
-//			}
 
 		} else if (command.equals("LogoutCon.do")) {
 
@@ -118,12 +78,44 @@ public class FrontController extends HttpServlet {
 			PrintWriter out = response.getWriter();
 			out.print(check);
 			
-		} else if ( command.equals("actor_comment.do")){
-			
+		} else if ( command.equals("newpost.do")){
+			snsDAO dao = new snsDAO();
 			String comment = request.getParameter("comment");
 			String mbid = request.getParameter("mbid");
-			snsDAO dao = new snsDAO();
-			dao.feed(mbid, comment);
+			String file = request.getParameter("file");
+			ServletContext context = getServletContext(); // 어플리케이션에 대한 정보를 ServletContext 객체가 갖게 됨.
+			String saveDir = context.getRealPath("Upload"); // 절대경로를 가져옴
+			int maxSize = 3 * 1024 * 1024; // 3MB
+			String encoding = "utf-8";
+			boolean isMulti = ServletFileUpload.isMultipartContent(request);// boolean타입. ??????
+			if (isMulti) {
+	              MultipartRequest multi = new MultipartRequest(request, saveDir, maxSize, encoding,
+	                          new DefaultFileRenamePolicy());
+	              String mb_id = multi.getParameter("mb_id");
+	              String sns_content = multi.getParameter("actor_comment");
+	              file = multi.getFilesystemName("file");
+	              System.out.println(mb_id);
+	              System.out.println(sns_content);
+	              System.out.println(file);
+	              try {
+	                    int result = dao.uploadFile(sns_content, mb_id, file);
+	                    String moveUrl = "";
+	                    System.out.println("들어옴"); 
+	                    if (result > 0) {
+	                          System.out.println("저장완료");
+	                          moveUrl = "SelectService";
+	                    } else {
+	                          System.out.println("저장실패");
+	                          moveUrl = "Upload.html";
+	                    }
+	                    response.sendRedirect(moveUrl);
+	              } catch (Exception e) {
+	                    e.printStackTrace();
+	              }
+	        } else {
+	              System.out.println("일반 전송 form 입니다.");
+	        }
+			dao.feed(mbid, comment, file);
 			PrintWriter out = response.getWriter();
 			out.print(mbid);
 			

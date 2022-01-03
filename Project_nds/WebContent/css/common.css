@@ -13,9 +13,9 @@ body {
 
 .sprite_write_logo {
     display: inline-block;
-    background: url('../imgs/NDS.PNG') no-repeat;
-    width: 97px;
-    height: 33px;
+    background: url('../imgs/ndstagram.png') no-repeat;
+    width: 140px;
+    height: 34px;
 }
 
 .sprite_home_icon{
@@ -134,7 +134,6 @@ body {
    
    border : 0;
    padding : 0;
-    background-image : url('https://mblogthumb-phinf.pstatic.net/MjAxOTA1MzBfMTI1/MDAxNTU5MjI1MTgxNjMy._s7sTPUk3deXhNu1Rz5pBKmFedXnuVvpbkT6IbTEU94g.dd0jgwndvRO1s-6-5gq1a6QwT4NuWwTYGJyiCulNyVwg.JPEG.bemine9_9/com_2.jpg?type=w800');
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -251,7 +250,7 @@ body {
 }
 
 #header .right_icons {
-    width: 132px;
+   
     display: flex;
     justify-content: space-between;
 }
@@ -272,8 +271,8 @@ body {
 }
 
 #main_container {
-    /*height: 100vh;*/
-    padding-top: 135px;
+    height: 100px;
+    padding-top: 100px;
     display: flex;
     justify-content: center;
     order: 1;
