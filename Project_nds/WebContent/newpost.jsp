@@ -13,7 +13,7 @@
 <meta name="viewport"
 	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-<title>title</title>
+<title>NDStargram</title>
 <style>
 #outer {
 	display: flex;
@@ -30,11 +30,11 @@
 
 textarea {
 	outline: none;
-	width: 56%;
+	width: 98%;
 	height: 6.25em;
 	border: ridge;
 	margin-top: 2px;
-	margin-left: 21%;
+	resize: none;
 }
 
 .heart_btn {
@@ -48,6 +48,9 @@ textarea {
 }
 
 .user_juno {
+	border: 1;
+}
+.user_juno > button{
 	border: 1;
 }
 
@@ -104,32 +107,31 @@ body {
 	
 }
 
-.middle > img {
-	witdh: 500px;
-	height :500%;
-	object-fit:cover;
-	object-position:;
-	
+.middle>img {
+	width: 100%;
+	height: 100%;
 }
 
 .middle {
-	width:380px;
-	height:97px;
-	overflow:hidden;
-	margin:0 auto;
+	width: 380px;
+	height: 97px;
+	overflow: hidden;
+	margin: 0 auto;
 	text-align: center;
 }
 
-.contents .middle {
-	width:50%;
+.middle > p {
+	margin:auto;
+}
 
+.contents .middle {
+	width: 50%;
 }
 
 #file {
-	margin-left:21%;
+	margin-left: 21%;
 	margin-top: 1%;
 }
-
 </style>
 <link rel="stylesheet" href="css/reset.css">
 <link rel="stylesheet" href="css/common.css">
@@ -138,7 +140,7 @@ body {
 
 </head>
 <%
-HttpSession se = request.getSession();
+	HttpSession se = request.getSession();
 memberDTO dto = (memberDTO) se.getAttribute("dto");
 snsDAO dao = new snsDAO();
 %>
@@ -166,34 +168,37 @@ snsDAO dao = new snsDAO();
 	<div></div>
 	<div class="right_icons" style="width: 10px">
 		<a href="Start.jsp" class="cicon"><div class="sprite_home_icon"></div></a>
-		<a href="mb_part1Cn.jsp" class="cicon"><div class="sprite_phone_icon"></div></a>
-		<a href="survey_connect.jsp" class="cicon"><div class="sprite_heart_icon_outline"></div></a> 
-		<a href="KaKaoMap2.jsp" class="cicon"><div class="sprite_map_icon"></div></a> 
-		<a href="newpost.jsp" class="cicon"><div class="sprite_user_icon_outline" onClick=""></div></a>
+		<a href="mb_part1Cn.jsp" class="cicon"><div
+				class="sprite_phone_icon"></div></a> <a href="survey_connect.jsp"
+			class="cicon"><div class="sprite_heart_icon_outline"></div></a> <a
+			href="KaKaoMap2.jsp" class="cicon"><div class="sprite_map_icon"></div></a>
+		<a href="newpost.jsp" class="cicon"><div
+				class="sprite_user_icon_outline"></div></a>
 	</div>
 
 
 	</section> </header> <section id="main_container">
 	<div id="inner">
 		<div class="contents_box">
-			<article class="contents"> <header class="top"
-				style="width: 376px; height: 30px; margin-left:22%;">
-			<div class="user_container">
-				<div class="profile_img">
-					<img src="imgs/thumb.jpeg" alt="프로필이미지">
-				</div>
-				<div class="user_name">
-					<div class="nick_name m_text" id="actor_id"><%=dto.getId() %></div>
+			<article class="contents">
+			<div class="top" style="width: 97%; height: 30px;">
+				<div class="user_container">
+					<div class="profile_img">
+						<img src="imgs/thumb.jpeg" alt="프로필이미지">
+					</div>
+					<div class="user_name">
+						<div class="nick_name m_text" id="actor_id"><%=dto.getId()%></div>
+					</div>
+
 				</div>
 
 			</div>
-
-			</header> 
-			<div class="middle">
+			<div class="middle" style="width: 457px; height: 163px; display: contents;">
+			<div class="middle" id = "hideen"><p>이미지를 넣어주세요!</p></div>
 			</div>
 			<form action="UploadService" method="post"
 				enctype="multipart/form-data">
-				<input type="hidden" name="mb_id" value="이동현"
+				<input type="hidden" name="mb_id" value="<%=dto.getId()%>"
 					style="border: none; border-right: 0px; border-top: 0px; border-left: 0px; border-bottom: 0px"
 					readonly>
 				<textarea name="sns_content" placeholder="지금 무슨생각을 하고 계신가요?"> </textarea>
@@ -207,11 +212,12 @@ snsDAO dao = new snsDAO();
 	function setThumbnail(event) {
 		var reader = new FileReader();
 		reader.onload = function(event) {
+			const div = document.getElementById('hideen');
+			div.remove();
 			var img = document.createElement("img");
 			img.setAttribute("src", event.target.result);
 			document.querySelector("div.middle").appendChild(img);
 		};
-
 		reader.readAsDataURL(event.target.files[0]);
 	}
 </script>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>NDStargram</title>
 <style type="text/css">
 /* 전체 공간에 지도를 담기위한 css */
 html, body, #map {

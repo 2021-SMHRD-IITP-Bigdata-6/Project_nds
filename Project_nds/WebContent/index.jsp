@@ -12,101 +12,152 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport"
-   content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <title>title</title>
 <style>
 #outer {
-   display: flex;
-   justify-content: center;
-   align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 #user_feed {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   font-size: 12px;
-   font: -webkit-mini-control;
-   
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 12px;
+	font: -webkit-mini-control;
 }
 
 textarea {
-   outline: none;
-   width: 97.8%;
-   height: 6.25em;
-   border: ridge;
-   margin-top: 2px;
+	outline: none;
+	width: 97.8%;
+	height: 6.25em;
+	border: ridge;
+	margin-top: 2px;
 }
 
 .heart_btn {
-   cursor: pointer;
+	cursor: pointer;
 }
 
 .user_name {
-   display: flex;
-   justify-content: center;
-   align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .user_juno {
-   border: 1;
+	border: 1;
 }
 
 .comment-detail {
-   
+	
 }
 
 .user_feedbox {
-   margin-top: 3px;
-   margin-bottom: 3px;
-   outline: 2px solid #fafafa;
-   border-radius: 10px;
-   border-color: #fafafa;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	outline: 2px solid #fafafa;
+	border-radius: 10px;
+	border-color: #fafafa;
 }
 
 article>div {
-   position: relative;
-   width: 500px;
-   height: auto;
+	position: relative;
+	width: 500px;
+	height: auto;
 }
 
 body {
-   background-color: #fafafa;
+	background-color: #fafafa;
 }
 
 #actor_comment {
-   resize: none;
+	resize: none;
 }
 
 #reg_btn {
-   background-color: #fafafa;
-   border: revert;
-   color: #262626;
-   cursor: pointer;
-   font-family: 'BenchNine', Arial, sans-serif;
-   line-height: 1rem;
-   outline: none;
-   text-transform: uppercase;
-   font-weight: 600;
-   padding: 4px 14px;
-   font-size: 12px;
-   margin-left: 220px;
-   margin-top: 10px;
-   margin-bottom: 10px;
-   border-radius: 15px
+	background-color: #fafafa;
+	border: revert;
+	color: #262626;
+	cursor: pointer;
+	font-family: 'BenchNine', Arial, sans-serif;
+	line-height: 1rem;
+	outline: none;
+	text-transform: uppercase;
+	font-weight: 600;
+	padding: 4px 14px;
+	font-size: 12px;
+	margin-left: 220px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-radius: 15px
 }
 
 .contents {
-   outline: 1px solid #fafafa;
-   border-radius: 100px;
+	outline: 1px solid #fafafa;
+	border-radius: 100px;
 }
 
-#259{
-   position: relative;
-   left:20px
+#259 {
+	position: relative;
+	left: 20px
 }
 
 
+.user_juno>input {
+	width: 68%;
+	height: 32px;
+	font-size: 15px;
+	border: 0;
+	border-radius: 15px;
+	outline: none;
+	padding-left: 10px;
+	background-color: rgb(233, 233, 233);
+}
+
+button {
+	background: #EEB8B8;
+	color: #fff;
+	border: none;
+	position: relative;
+	height: 28px;
+	font-size: 0.6em;
+	padding: 0 2em;
+	cursor: pointer;
+	transition: 800ms ease all;
+	outline: none;
+	border-radius: 10%;
+}
+
+button:hover {
+	background: #fff;
+	color: #1AAB8A;
+}
+
+button:before, button:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 2px;
+	width: 0;
+	background: #1AAB8A;
+	transition: 400ms ease all;
+}
+
+button:after {
+	right: inherit;
+	top: inherit;
+	left: 0;
+	bottom: 0;
+}
+
+button:hover:before, button:hover:after {
+	width: 100%;
+	transition: 800ms ease all;
+}
 </style>
 <link rel="stylesheet" href="css/reset.css">
 <link rel="stylesheet" href="css/common.css">
@@ -132,8 +183,8 @@ String comment = "";
 String j_id = "";
 int span_id = 10001;
 int k = 0;
-if (post_info.size() > 10){
-   k = 10;
+if (post_info.size() > 3){
+   k = 3;
 } else {
    k = post_info.size();
 }
@@ -145,10 +196,13 @@ String d = dto.getPw();
 String e = dto.getTel();
 String f = dto.getSys();
 String g = dto.getAd();
+System.out.println(mb_likes);
+System.out.println(Arrays.toString(mb_seq));
+System.out.println(Arrays.asList(mb_seq).contains("253"));
 %>
 
 <body id="show">
-<script>
+	<script>
     function search_post(){
     	 console.log("test");
          $.ajax({
@@ -160,13 +214,11 @@ String g = dto.getAd();
             dataType:"json",
             success : function(res) {
                console.log(res);
-               console.log(res[0]["mb_id"]);
-               console.log(res.length)
                $('.contents_box').html('');
                let div = "";
                for ( let i = 0; i < res.length; i++){
-                  div += `<article class="contents">
-    					<div class="top" style="width: 487px; height: 30px;">
+                  div += `<article class="contents" style="position: relative;">
+    					<div class="top" style="width: 98%; height: 30px;" style="position: absolute; bottom:0px;">
 						<div class="user_container">
 							<div class="profile_img">
 								<img src="imgs/thumb.jpeg" alt="프로필이미지">
@@ -176,8 +228,8 @@ String g = dto.getAd();
 							</div>
 						</div>
 					</div>
-					<div class="middle" style="width: 457px;">
-						<img src="Upload/`+res[i].hash_tag+`" width="500" height="250">
+					<div class="middle" style="width: 457px; height: 163px; display: contents;">
+						<img src="Upload/`+res[i].hash_tag+`" width="100%" height="100%">
 					</div>
 					<section>
 					<div class="like_top">
@@ -189,8 +241,9 @@ String g = dto.getAd();
 					</div>
 					</section> <section>
 					<div class="comment_container" style="padding-right: 10px; padding-left: 0px; padding-right: 0px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
-						<div id="user_feed" style="line-height: 22px; letter-spacing: 1px; display: block; float: left; width: 407px; height: 200px; padding-bottom: 35px;">`+res[i].sns_content+`</div>
+						<div id="user_feed" style="line-height: 22px; letter-spacing: 1px; display: block; float: left; width: 407px;">`+res[i].sns_content+`</div>
 						<div class="comment" id="comment-list-ajax-post37">
+						</section>
 						<div class="comment-detail">
 						<div class="heart_btn" id="outer">
 						</div>
@@ -202,7 +255,7 @@ String g = dto.getAd();
 							<button type=submit onclick="loadCmct(`+res[i].sns_seq+`)">댓글보기</button>
 							<br>
 							<p class="a`+res[i].sns_seq+`"></p>
-						</div>`;
+						</div></article>`;
                }
             $('.contents_box').append(div);
             sc=true;
@@ -214,15 +267,14 @@ String g = dto.getAd();
       }
      
   
-  </script> 
+  </script>
 	<!-- <script type="text/javascript" src=js/jquery-3.6.0.min.js></script> -->
 	<script>
     let like_boolean = 0;
     let sc = false;
   </script>
-	<section id="container"> 
-	<header id="header"> 
-	<section class="inner" style="width : 550px">
+	<section id="container"> <header id="header"> <section
+		class="inner" style="width : 550px">
 
 	<h1 class="logo">
 		<a href="SnsService">
@@ -231,8 +283,10 @@ String g = dto.getAd();
 		</a>
 	</h1>
 	<div class="search_box">
-		<input type="text" placeholder="검색" id="search-field">
-		 <input	type="submit" onClick="search_post()">
+		<form onSubmit="return false">
+			<input type="text" placeholder="검색" id="search-field"> <input
+				type="submit" onClick="search_post()" style="display: none;">
+		</form>
 		<div class="fake_field">
 			<span class="sprite_small_search_icon"></span> <span>검색</span>
 		</div>
@@ -240,20 +294,20 @@ String g = dto.getAd();
 	<div></div>
 	<div class="right_icons" style="width: 10px">
 		<a href="Start.jsp" class="cicon"><div class="sprite_home_icon"></div></a>
-		<a href="mb_part1Cn.jsp" class="cicon"><div class="sprite_phone_icon"></div></a>
-		<a href="survey_connect.jsp" class="cicon"><div class="sprite_heart_icon_outline"></div></a> 
-		<a href="KaKaoMap2.jsp" class="cicon"><div class="sprite_map_icon"></div></a> 
-		<a href="newpost.jsp" class="cicon"><div class="sprite_user_icon_outline" onClick=""></div></a>
+		<a href="mb_part1Cn.jsp" class="cicon"><div
+				class="sprite_phone_icon"></div></a> <a href="survey_connect.jsp"
+			class="cicon"><div class="sprite_heart_icon_outline"></div></a> <a
+			href="KaKaoMap2.jsp" class="cicon"><div class="sprite_map_icon"></div></a>
+		<a href="newpost.jsp" class="cicon"><div
+				class="sprite_user_icon_outline" onClick=""></div></a>
 	</div>
-	</section> 
-	</header> 
-	<section id="main_container">
+	</section> </header> <section id="main_container">
 	<div id="inner">
 		<div class="contents_box">
 			<article class="contents">
 			<form id="for_moon">
-				<%
-                              for (int i = 0; i < 3; i++) { 
+				<%if ( k != 0 ){
+                              for (int i = 0; i < k; i++) { 
                                     hash = post_info.get(cnt).getHash_tag();
                                     mbid = post_info.get(cnt).getMb_id();
                                     comment = post_info.get(cnt).getSns_content();
@@ -276,59 +330,57 @@ String g = dto.getAd();
 							</div>
 						</div>
 					</div>
-					<div class="middle" style="width: 457px;">
-						<img src="Upload/<%=hash%>" width="500" height="250">
+					<div class="middle"
+						style="width: 457px; height: 163px; display: contents;">
+						<img src="Upload/<%=hash%>" width="100%" height="100%">
 					</div>
 					<section>
 					<div class="like_top">
-						<div class="sprite_heart_icon_outline" id=<%=j_id%> name="39" data-name="heartbeat" onClick="like_click(<%=like_count%>,this.id); love(this.id);">
+						<% System.out.println(Arrays.asList(mb_seq).contains(j_id));
+					if (Arrays.asList(mb_seq).contains(j_id) == true) {
+						System.out.println(Arrays.asList(mb_seq).contains(j_id));
+						%>
+						<div class="sprite_heart_icon_click" id=<%=j_id%> name="39"
+							data-name="heartbeat"
+							onClick="like_click(<%=like_count%>,this.id); love(this.id);">
 							<span class="<%=j_id%>" style="float: left; padding-left: 30px"><%=like_count%></span>
 						</div>
+						<%} else {%>
+						<div class="sprite_heart_icon_outline" id=<%=j_id%> name="39"
+							data-name="heartbeat"
+							onClick="like_click(<%=like_count%>,this.id); love(this.id);">
+							<span class="<%=j_id%>" style="float: left; padding-left: 30px"><%=like_count%></span>
+						</div>
+						<% } %>
 					</div>
 					</section> <section>
-					<div class="comment_container"  style="padding-right: 10px; padding-left: 0px; padding-right: 0px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
-						<div id="user_feed" style="line-height: 22px; letter-spacing: 1px; display: block; float: left; width: 407px; height: 200px; padding-bottom: 35px;"><%=comment%></div>
-						<div class="nick_name m_text" id="cm_mb_id" style="padding-bottom: 80px; width: 100px; height: 150px;"><%=dto.getId()%></div>
-						<div class="comment-detail">
-								<div class="heart_btn" id="outer">
-									<%
-                                       if (Arrays.asList(mb_seq).contains(j_id) == true) {
-                                       System.out.println(Arrays.asList(mb_seq).contains(j_id));
-                                    %>
+					<div class="comment_container"
+						style="padding-right: 10px; padding-left: 0px; padding-right: 0px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+						<div id="user_feed"
+							style="line-height: 22px; letter-spacing: 1px; display: block; float: left; width: 407px;"><%=comment%></div>
 
-									<%
-                                       } else {
-                                    %>
-
-									<%
-                                       }
-                                    %>
-
-
-								</div>
-
-
-								<br>
-								<div class="nick_name m_text" id="cm_mb_id"></div>
-								<div class="user_juno">
-									<input type="text" id="b<%=j_id%>" class="<%=j_id%>">
-									<button type=submit onclick="sendCmCt(<%=j_id%>)">작성</button>
-									<button type=submit onclick="loadCmct(<%=j_id%>)">댓글보기</button>
-									<br>
-									<p class="a<%=j_id%>"></p>
-								</div>
-							</div>
-						<div class="comment" id="comment-list-ajax-post37">
-							
-						</div>
 					</div>
 					</section>
+					<div class="comment-detail">
+						<div class="heart_btn" id="outer"></div>
+						<br>
+						<div class="nick_name m_text" id="cm_mb_id" style="display: none;">
+							<%=dto.getId()%></div>
+						<div class="user_juno">
+							<input type="text" id="b<%=j_id%>" class="<%=j_id%>">
+							<button type=submit onclick="sendCmCt(<%=j_id%>)">작성</button>
+							<button type=submit onclick="loadCmct(<%=j_id%>)">댓글보기</button>
+							<br>
+							<p class="a<%=j_id%>"></p>
+						</div>
+					</div>
+					<div class="comment" id="comment-list-ajax-post37"></div>
 				</div>
 				<%
                         cnt = cnt + 1;
                      %>
 				<%
-                        }
+                        }}
                      %>
 
 			</div>
@@ -369,8 +421,8 @@ String g = dto.getAd();
   							</div>
   						</div>
   					</div>
-  					<div class="middle" style="width: 457px;">
-  						<img src="Upload/`+image+`" width="500" height="250">
+  					<div class="middle" style="width: 457px; height: 163px; display: contents;"">
+  						<img src="Upload/`+image+`" width="100%" height="100%">
   					</div>
   					<section>
   					<div class="like_top">
@@ -382,8 +434,9 @@ String g = dto.getAd();
   					</div>
   					</section> <section>
   					<div class="comment_container" style="padding-right: 10px; padding-left: 0px; padding-right: 0px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
-  						<div id="user_feed" style="line-height: 22px; letter-spacing: 1px; display: block; float: left; width: 407px; height: 200px; padding-bottom: 35px;">`+comment+`</div>
+  						<div id="user_feed" style="line-height: 22px; letter-spacing: 1px; display: block; float: left; width: 407px;">`+comment+`</div>
   						<div class="comment" id="comment-list-ajax-post37">
+  						</section>
   						<div class="comment-detail">
 						<div class="heart_btn" id="outer">
 						</div>
@@ -466,7 +519,7 @@ String g = dto.getAd();
     }
     function love(click_id){
        let love_cnt = parseInt(document.getElementsByClassName(click_id)[0].innerText);
-       let mb = document.getElementById("actor_id").innerHTML;
+       let mb = "<%=dto.getId()%>"
         $.ajax({
          url: "love.do",
          type: "get",
@@ -499,14 +552,6 @@ String g = dto.getAd();
             "cm_snsseq" : seq
          },
          success : function(cm_ct) {
-            
-            if(mbid != null){
-               $('.a'+jid).after(cm_ct+"<br>");
-               console.log("성공");
-            }
-            else{
-               $('.a'+jid).html("작성 실패");
-            }
          },
          error : function () {
              alert("요청실패!");
@@ -515,35 +560,9 @@ String g = dto.getAd();
       });
    }
    </script> <script type="text/javascript">
-   function loadCmct(seq) {
-      console.log(seq)
-      $.ajax({
-         url : "loadcomment.do",
-         type : "get",
-         dataType : "json",
-         data: {
-            "lcm_sns_seq" : seq,
-         },
-         success : function(res) {
-            
-            if(res != null){
-               for (let i = 0; i < res.length; i++) {
-                  $('.a'+seq).append(res[i].lmb_id +" : "+res[i].lcm_ct+"<br>");
-               }
-            }
-            else{
-               $('.a'+seq).html("작성된 댓글이 없습니다");
-            }
-         },
-         error : function () {
-             alert("요청실패!");
-         }
-         
-      });
-   }
    
    function loadCmct(seq) {
-       let mbid =document.getElementById("cm_mb_id").innerHTML;
+	   let mbid = "<%=dto.getId()%>";
       console.log(seq)
       $.ajax({
          url : "loadcomment.do",

@@ -10,7 +10,7 @@
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Photography Website Concept</title>
+	<title>NDStargram</title>
 	<meta name="description" content="A photography-inspired website layout with an expanding stack slider and a background image tilt effect" />
 	<meta name="keywords" content="photography, template, layout, effect, expand, image stack, animation, flickity, tilt" />
 	<meta name="author" content="Codrops" />
@@ -34,7 +34,7 @@ memberDTO dto = (memberDTO) se.getAttribute("dto");
 		</div>
 		<header class="codrops-header">
 			<div class="codrops-links">
-			  <a href="login.jsp" class="cicon"><div class="sprite_home_icon" ></div></a>
+			  <a href="SnsService" class="cicon"><div class="sprite_home_icon" ></div></a>
 			</div>
 			<h1 class="codrops-title">상담사 연결 페이지 <span></span></h1>
 			<nav class="menu">
